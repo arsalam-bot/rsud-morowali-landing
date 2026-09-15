@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSUD Morowali &mdash; Pelayanan Kesehatan untuk Masyarakat Morowali</title>
+<meta name="description" content="Situs resmi RSUD Morowali. Informasi layanan, jadwal dokter, fasilitas, dan kontak rumah sakit.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RSUD Morowali &mdash; Pelayanan Kesehatan untuk Masyarakat Morowali">
+<meta property="og:description" content="Situs resmi RSUD Morowali. Informasi layanan, jadwal dokter, fasilitas, dan kontak rumah sakit.">
+<meta property="og:image" content="assets/hero/slide-1-gedung.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSUD Morowali &mdash; Pelayanan Kesehatan untuk Masyarakat Morowali">
+<meta name="twitter:description" content="Situs resmi RSUD Morowali. Informasi layanan, jadwal dokter, fasilitas, dan kontak rumah sakit.">
+<meta name="twitter:image" content="assets/hero/slide-1-gedung.jpg">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<a href="#konten-utama" class="skip-link">Lewati ke konten utama</a>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/logo-rsud-morowali.png" alt="Logo RSUD Morowali"></span>
+      <span class="brand-name">RSUD Morowali<small>Rumah Sakit Umum Daerah</small></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <ul>
+        <li><a href="index.html" class="active" aria-current="page">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="layanan.html">Layanan</a></li>
+        <li><a href="informasi.html">Informasi</a></li>
+        <li><a href="jadwal-dokter.html">Jadwal Dokter</a></li>
+        <li><a href="pendaftaran-pasien.html" class="btn btn-primary" style="padding:10px 20px;">Pendaftaran</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Buka menu navigasi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigasi mobile">
+    <a href="index.html" class="active" aria-current="page">Beranda</a>
+    <a href="profil.html">Profil</a>
+    <a href="layanan.html">Layanan</a>
+    <a href="informasi.html">Informasi</a>
+    <a href="jadwal-dokter.html">Jadwal Dokter</a>
+    <a href="pendaftaran-pasien.html">Pendaftaran Pasien</a>
+  </nav>
+</header>
+
+<main id="konten-utama">
+
+  <!-- Hero: full-bleed image carousel (placeholder slides for now) + welcome/motto + service search -->
+  <section class="hero">
+    <div class="hero-carousel reveal" id="heroCarousel" aria-roledescription="carousel" aria-label="Galeri RSUD Morowali">
+      <ul class="hero-slides" id="heroSlides">
+        <li class="hero-slide is-active">
+          <div class="hero-slide-bg hero-slide-bg--1"></div>
+          <img class="hero-slide-img" src="assets/hero/slide-1-gedung.jpg" alt="Gedung RSUD Morowali tampak depan" loading="eager">
+          <div class="hero-slide-glow"></div>
+          <div class="hero-slide-scrim"></div>
+        </li>
+        <li class="hero-slide">
+          <div class="hero-slide-bg hero-slide-bg--2"></div>
+          <img class="hero-slide-img" src="assets/hero/slide-2-ruang.jpg" alt="" loading="lazy">
+          <div class="hero-slide-glow"></div>
+          <div class="hero-slide-scrim"></div>
+          <span class="hero-slide-tag">Foto sementara (stok) &mdash; bukan foto RSUD Morowali</span>
+        </li>
+        <li class="hero-slide">
+          <div class="hero-slide-bg hero-slide-bg--3"></div>
+          <img class="hero-slide-img" src="assets/hero/slide-3-fasilitas.jpg" alt="" loading="lazy">
+          <div class="hero-slide-glow"></div>
+          <div class="hero-slide-scrim"></div>
+          <span class="hero-slide-tag">Foto sementara (stok) &mdash; bukan foto RSUD Morowali</span>
+        </li>
+      </ul>
+
+      <div class="hero-caption">
+        <p class="hero-welcome">Selamat datang di RSUD Morowali!</p>
+        <h1 class="hero-motto">Pelayanan kesehatan yang dekat, cepat, dan bisa dipercaya untuk warga Morowali</h1>
+      </div>
+
+      <div class="hero-search-widget reveal">
+        <form class="hero-search-form" id="heroSearchForm" role="search">
+          <label for="heroSearchInput" class="hero-search-label">Cari Dokter atau Layanan</label>
+          <div class="hero-search-input-wrap">
+            <svg class="hero-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="heroSearchInput" name="q" placeholder="Cari nama layanan, mis. Poliklinik Anak" autocomplete="off">
+            <button type="submit" class="btn btn-primary hero-search-btn">Cari</button>
+          </div>
+          <div class="hero-search-results" id="heroSearchResults" aria-live="polite"></div>
+        </form>
+
+        <div class="hero-shortcuts">
+          <a href="pendaftaran-pasien.html" class="shortcut-card">
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M9 15l2 2 4-4"/></svg></span>
+            <span>Buat Janji</span>
+          </a>
+          <a href="layanan.html" class="shortcut-card">
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>
+            <span>Layanan Unggulan</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alur Pelayanan: real 4-step rawat jalan flow (bukan dipaksa jadi 3 langkah generik).
+       Section-head di-center & eyebrow dihapus supaya section ini yang paling menonjol
+       dilihat user tepat setelah Hero, sesuai arahan terakhir. -->
+  <section class="flow">
+    <!-- Motif Batik Tobungku (bulat, belah ketupat, tumpal — lihat DESIGN.md bag. 5) sebagai
+         aksen latar kiri-kanan, pudar ke tengah lewat mask supaya teks di tengah tetap terbaca -->
+    <div class="flow-motif flow-motif--left" aria-hidden="true">
+      <svg viewBox="0 0 60 120" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <defs>
+          <pattern id="batikMotifL" width="60" height="120" patternUnits="userSpaceOnUse">
+            <polygon class="m-a" points="20,20 30,2 40,20"></polygon>
+            <polygon class="m-b" points="30,38 40,48 30,58 20,48"></polygon>
+            <circle class="m-a" cx="30" cy="76" r="9"></circle>
+            <polygon class="m-b" points="20,100 30,118 40,100"></polygon>
+          </pattern>
+        </defs>
+        <rect width="60" height="120" fill="url(#batikMotifL)"></rect>
+      </svg>
+    </div>
+    <div class="flow-motif flow-motif--right" aria-hidden="true">
+      <svg viewBox="0 0 60 120" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <defs>
+          <pattern id="batikMotifR" width="60" height="120" patternUnits="userSpaceOnUse">
+            <polygon class="m-a" points="20,20 30,2 40,20"></polygon>
+            <polygon class="m-b" points="30,38 40,48 30,58 20,48"></polygon>
+            <circle class="m-a" cx="30" cy="76" r="9"></circle>
+            <polygon class="m-b" points="20,100 30,118 40,100"></polygon>
+          </pattern>
+        </defs>
+        <rect width="60" height="120" fill="url(#batikMotifR)"></rect>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <h2>Langkah pelayanan rawat jalan</h2>
+        <p>Empat langkah utama saat berkunjung ke RSUD Morowali, dari pendaftaran sampai pengambilan obat.</p>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step reveal">
+          <span class="step-num">01</span>
+          <h3>Pendaftaran</h3>
+          <p>Ambil antrian dan daftar di loket atau APM.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="step-num">02</span>
+          <h3>Pemeriksaan</h3>
+          <p>Menunggu giliran di poliklinik.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="step-num">03</span>
+          <h3>Konsultasi</h3>
+          <p>Diperiksa oleh dokter.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="step-num">04</span>
+          <h3>Farmasi</h3>
+          <p>Ambil obat di apotek.</p>
+        </div>
+      </div>
+      <div class="flow-cta reveal">
+        <a href="alur-pelayanan.html" class="btn btn-outline btn-sm">Lihat Alur Detail Pelayanan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pendaftaran Pasien: cara ambil antrean rawat jalan, dibedakan pasien Umum/Mandiri dan BPJS Kesehatan -->
+  <section class="regis" id="pendaftaran">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Pendaftaran Pasien</h2>
+        <p>Panduan resmi untuk pendaftaran poliklinik rawat jalan.</p>
+      </div>
+      <div class="regis-card reveal">
+        <div class="regis-cols">
+          <div class="regis-col">
+            <span class="regis-type type-umum">Pasien Umum / Mandiri</span>
+            <ol>
+              <li><span>Ambil nomor antrean online lewat <a href="https://daftar.rsud-morowali.id/" target="_blank" rel="noopener" style="color:var(--color-primary-dark); text-decoration:underline; font-weight:700;">daftar.rsud-morowali.id</a>, lalu tunjukkan nomor antrean yang diperoleh ke petugas informasi.</span></li>
+              <li><span>Wajib membawa KTP/NIK. Berkas pendukung lain seperti rujukan atau surat keterangan berobat sifatnya opsional.</span></li>
+            </ol>
+          </div>
+          <div class="regis-col">
+            <span class="regis-type type-bpjs">Pasien BPJS Kesehatan</span>
+            <ol>
+              <li><span>Wajib mengambil antrean lewat aplikasi <strong>Mobile JKN</strong>.</span></li>
+              <li><span>Pastikan aplikasi Mobile JKN Anda sudah terdaftar dan terhubung sesuai data pasien.</span></li>
+            </ol>
+            <div class="regis-download-links">
+              <a href="https://play.google.com/store/apps/details?id=app.bpjs.mobile" target="_blank" rel="noopener" class="store-badge" aria-label="Unduh Mobile JKN di Google Play">
+                <svg class="store-badge-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFC107" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#EA4335" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#34A853" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+                <span class="store-badge-text"><small>Unduh di</small>Google Play</span>
+              </a>
+              <a href="https://apps.apple.com/id/app/mobile-jkn/id1237601115" target="_blank" rel="noopener" class="store-badge" aria-label="Unduh Mobile JKN di App Store">
+                <svg class="store-badge-icon" viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                <span class="store-badge-text"><small>Unduh di</small>App Store</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="regis-cta">
+          <a href="pendaftaran-pasien.html" class="regis-more">Lihat cara lengkapnya <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Maklumat Pelayanan: janji layanan resmi, ditandatangani elektronik oleh Direktur RSUD Morowali.
+       Poster asli ditampilkan apa adanya (jaga keaslian tanda tangan & QR code), kutipan janjinya
+       ditulis ulang jadi teks biasa di sampingnya supaya tetap terbaca jelas di layar sempit. -->
+  <section class="maklumat">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Janji Layanan Kami</h2>
+        <p>Komitmen resmi yang ditandatangani elektronik oleh Direktur RSUD Morowali kepada masyarakat.</p>
+      </div>
+      <div class="maklumat-grid">
+        <div class="maklumat-poster reveal">
+          <img src="assets/maklumat-pelayanan.webp" alt="Poster Maklumat Pelayanan RSUD Morowali, ditandatangani elektronik oleh Direktur RSUD Morowali, Maskur, S.Kep., Ns., M.M" loading="lazy">
+        </div>
+        <div class="maklumat-content reveal">
+          <blockquote>&ldquo;Dengan ini, kami menyatakan sanggup menyelenggarakan pelayanan sesuai standar pelayanan yang telah ditetapkan, memberikan pelayanan sesuai dengan kewajiban dan akan melaksanakan perbaikan secara terus menerus dan apabila tidak menepati janji ini, kami siap menerima sanksi sesuai peraturan perundang-undangan yang berlaku.&rdquo;</blockquote>
+          <p class="maklumat-signature">Direktur RSUD Morowali<br><strong>Maskur, S.Kep., Ns., M.M</strong></p>
+          <ul class="maklumat-values">
+            <li><strong>Komitmen</strong><span>Kami berkomitmen memberikan pelayanan terbaik bagi masyarakat.</span></li>
+            <li><strong>Integritas</strong><span>Melayani dengan jujur, transparan dan bertanggung jawab.</span></li>
+            <li><strong>Profesional</strong><span>Bekerja secara profesional sesuai standar pelayanan yang berlaku.</span></li>
+            <li><strong>Peduli</strong><span>Melayani dengan empati dan sepenuh hati.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ: pertanyaan spesifik RSUD Morowali (bukan template generik), pakai <details>/<summary>
+       native supaya accordion berfungsi tanpa JS tambahan (otomatis bisa keyboard & screen reader) -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>FAQ</h2>
+        <p>Pertanyaan yang sering diajukan.</p>
+      </div>
+      <div class="faq-list faq-list--cols">
+        <details class="faq-item reveal">
+          <summary>Bagaimana cara daftar poliklinik atau rawat jalan?</summary>
+          <div class="faq-answer">
+            <p>Ambil antrean online terlebih dahulu. Pasien BPJS Kesehatan wajib memiliki surat rujukan dari Faskes Tingkat 1/klinik/rumah sakit lain (atau surat kontrol dari RSUD Morowali), lalu mengambil antrean lewat aplikasi Mobile JKN. Pasien umum atau penjamin lainnya bisa mengambil antrean lewat <a href="https://daftar.rsud-morowali.id/" target="_blank" rel="noopener">website pendaftaran RSUD Morowali</a>.</p>
+          </div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Sudah punya nomor antrean tapi tidak jadi berobat atau datang lewat dari jam pendaftaran, harus bagaimana?</summary>
+          <div class="faq-answer">
+            <p>Nomor antrean akan otomatis batal di sore/malam hari. Silakan ambil antrean kembali untuk hari berikutnya.</p>
+          </div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Jam berapa pendaftaran dan pelayanan buka?</summary>
+          <div class="faq-answer">
+            <p>Jam pendaftaran mulai 08.00&ndash;11.00 WITA, jam pelayanan poliklinik/rawat jalan mulai 08.00&ndash;14.00. Pasien tetap harus melalui loket atau APM (Anjungan Pendaftaran Mandiri) untuk bisa dilayani.</p>
+          </div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Bagaimana cara mendaftar ke IGD?</summary>
+          <div class="faq-answer">
+            <p>Pasien bisa langsung menuju IGD, atau lewat rujukan Faskes Tingkat 1/klinik &mdash; berlaku untuk pasien BPJS Kesehatan maupun umum. IGD buka 24 jam.</p>
+          </div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Saya dan keluarga bukan warga Morowali, apakah bisa berobat di sini?</summary>
+          <div class="faq-answer">
+            <p>Bisa &mdash; RSUD Morowali melayani semua elemen masyarakat. Untuk WNI cukup membawa KTP, untuk WNA cukup membawa kartu identitas lainnya. Untuk keluarga pasien yang butuh tempat tinggal sementara selama rawat inap, tersedia Rumah Singgah &mdash; hubungi WhatsApp <a href="https://wa.me/628123456789" target="_blank" rel="noopener">0812-3456-789</a> untuk informasi lebih lanjut.</p>
+          </div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Bagaimana cara menyampaikan pengaduan atau keluhan?</summary>
+          <div class="faq-answer">
+            <p>RSUD Morowali menyediakan <a href="kanal-pengaduan.html">Kanal Pengaduan dan Komunikasi Masyarakat</a> untuk menyampaikan pengaduan, keluhan, atau saran langsung kepada manajemen.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-cta reveal">
+        <a href="faq.html" class="regis-more">Lihat FAQ Lainnya <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanal Pengaduan CTA: section ringkas, bukan card grid besar — cuma pintu masuk cepat ke
+       kanal-pengaduan.html untuk pengunjung yang tidak sempat buka FAQ (yang barusan menyinggung
+       hal sama). Beranda dipilih (bukan cuma Profil/Informasi) karena pasien yang mau mengadu
+       biasanya buka Beranda dulu (permintaan langsung). -->
+  <section class="complaint-cta">
+    <div class="container">
+      <div class="complaint-cta-card reveal">
+        <div>
+          <h2>Punya Keluhan atau Saran?</h2>
+          <p>Sampaikan pengaduan, keluhan, atau saran Anda kepada manajemen RSUD Morowali.</p>
+        </div>
+        <a href="kanal-pengaduan.html" class="btn btn-outline">Kanal Pengaduan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mitra dan Kerja Sama: logo saja, semua mitra nyata (bukan "Trusted By" generik) —
+       BPJS Kesehatan/Ketenagakerjaan dipakai langsung di alur pendaftaran situs ini,
+       bank-bank untuk pembayaran, Kemenkes & Pemda Morowali sebagai pembina/pemilik. -->
+  <section class="mitra">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Mitra dan Kerja Sama RSUD Morowali</h2>
+        <p>Bekerja sama dengan institusi terpercaya untuk memberikan pelayanan kesehatan terbaik kepada masyarakat.</p>
+      </div>
+      <ul class="mitra-logos reveal">
+        <li><img src="assets/mitra/bpjs-kesehatan.svg" alt="BPJS Kesehatan" loading="lazy"></li>
+        <li><img src="assets/mitra/bpjs-ketenagakerjaan.svg" alt="BPJS Ketenagakerjaan" loading="lazy"></li>
+        <li><img src="assets/mitra/fk-unhas.webp" alt="Fakultas Kedokteran Universitas Hasanuddin" loading="lazy"></li>
+        <li><img src="assets/mitra/bank-sulteng.webp" alt="Bank Sulteng" loading="lazy"></li>
+        <li><img src="assets/mitra/bank-bni.svg" alt="Bank BNI" loading="lazy"></li>
+        <li><img src="assets/mitra/bank-bsi.svg" alt="Bank Syariah Indonesia" loading="lazy"></li>
+        <li><img src="assets/mitra/bank-btn.svg" alt="Bank BTN" loading="lazy"></li>
+        <li><img src="assets/mitra/kemenkes.webp" alt="Kementerian Kesehatan RI" loading="lazy"></li>
+        <li><img src="assets/mitra/pemda-morowali.webp" alt="Pemerintah Kabupaten Morowali" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Ulasan Pengunjung: STATIS & PLACEHOLDER (belum ada ulasan asli, atas persetujuan user) —
+       ditandai jelas sebagai contoh tampilan lewat disclaimer + tanda kurung siku di tiap kartu,
+       BUKAN nama/kutipan karangan yang disamarkan seolah ulasan sungguhan (R-18/R-38). Rating
+       ditampilkan sebagai bintang kosong (belum ada rating asli), bukan angka karangan (R-17). -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Ulasan Pengunjung</h2>
+        <p>Apa Kata Pengunjung Kami</p>
+      </div>
+      <div class="reviews-disclaimer reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span>Contoh tampilan &mdash; belum ada ulasan asli yang ditampilkan. Akan diganti dengan ulasan sungguhan dari pengunjung/pasien begitu tersedia.</span>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>
+          </div>
+          <p>[Ulasan pengunjung akan ditampilkan di sini]</p>
+          <div class="review-who">
+            <span class="review-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+            <span>[Nama Pengunjung]</span>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-cta reveal">
+        <a href="buat-ulasan.html" class="btn btn-outline btn-sm">Buat Ulasan Anda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Berita: 3 kegiatan asli dari user, "Lihat semua berita" mengarah ke berita.html tersendiri
+       (halaman terpisah dari informasi.html, lihat DOKUMENTASI.md bag. 6d). Foto pakai stok Unsplash
+       netral (tidak ada nama institusi lain/wajah yang mudah dikenali terlihat jelas — kriteria sama
+       seperti foto hero, lihat bag. 6.4), ditandai
+       jelas sebagai foto ilustrasi. -->
+  <section class="news-teaser">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Berita &amp; Kegiatan Terbaru</h2>
+        <p>Kabar kegiatan terbaru dari RSUD Morowali.</p>
+      </div>
+      <div class="news-teaser-grid">
+        <a href="berita-workshop-hypnotherapy.html" class="news-card reveal">
+          <div class="news-card-img">
+            <img src="assets/berita/berita-1-hypnotherapy.jpg" alt="" loading="lazy">
+            <span class="news-card-tag">Foto ilustrasi &mdash; bukan dokumentasi asli kegiatan</span>
+          </div>
+          <div class="news-card-body">
+            <time datetime="2026-09-08">8 September 2026</time>
+            <h3>Workshop Profesional Clinical Hypnotherapy</h3>
+          </div>
+        </a>
+        <a href="berita-audit-klinis-tb-ro.html" class="news-card reveal">
+          <div class="news-card-img">
+            <img src="assets/berita/berita-2-audit-tb-ro.jpg" alt="" loading="lazy">
+            <span class="news-card-tag">Foto ilustrasi &mdash; bukan dokumentasi asli kegiatan</span>
+          </div>
+          <div class="news-card-body">
+            <time datetime="2026-07-21">21 Juli 2026</time>
+            <h3>Pelaksanaan Audit Klinis dan Mentoring Klinis Pasien TB RO RSUD Morowali</h3>
+          </div>
+        </a>
+        <a href="berita-workshop-simgos.html" class="news-card reveal">
+          <div class="news-card-img">
+            <img src="assets/berita/berita-3-simgos.jpg" alt="" loading="lazy">
+            <span class="news-card-tag">Foto ilustrasi &mdash; bukan dokumentasi asli kegiatan</span>
+          </div>
+          <div class="news-card-body">
+            <time datetime="2026-06-19">19 Juni 2026</time>
+            <h3>Workshop SIMGOS RSUD Morowali</h3>
+          </div>
+        </a>
+      </div>
+      <div class="news-teaser-cta reveal">
+        <a href="berita.html" class="regis-more">Lihat semua berita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BPJS: pengingat proses khusus peserta BPJS Kesehatan, ditempatkan sebagai penutup sebelum
+       footer karena ini segmen pasien terbesar di RS daerah. Isinya disamakan dengan proses asli
+       yang sudah didata di section Pendaftaran Pasien & FAQ (rujukan + Mobile JKN) — sebelumnya
+       teks di sini generik dan malah keliru menyebut "daftar di loket", sekarang diperbaiki. -->
+  <section class="bpjs">
+    <div class="container reveal">
+      <div class="bpjs-info">
+        <img src="assets/mitra/bpjs-kesehatan.svg" alt="" class="bpjs-logo" loading="lazy">
+        <div>
+          <h3>Melayani Peserta BPJS Kesehatan</h3>
+          <p>Wajib membawa surat rujukan dari Faskes Tingkat 1/klinik/rumah sakit lain (atau surat kontrol RSUD Morowali), lalu ambil antrean lewat aplikasi Mobile JKN sebelum ke loket rawat jalan.</p>
+        </div>
+      </div>
+      <a href="#pendaftaran" class="btn btn-ghost-light">Lihat Cara Ambil Antrean</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <!-- Identity motif: tumpal pattern from Batik Tobungku (khas Morowali), rendered as a thin
+       line accent in the site's own palette rather than the batik's original colors — see DESIGN.md bag. 5 -->
+  <div class="divider divider-tumpal" aria-hidden="true">
+    <svg viewBox="0 0 200 12" preserveAspectRatio="none" focusable="false">
+      <defs>
+        <pattern id="batikTumpal" width="20" height="12" patternUnits="userSpaceOnUse">
+          <polygon class="t-a" points="0,12 5,0 10,12"></polygon>
+          <polygon class="t-b" points="10,12 15,0 20,12"></polygon>
+        </pattern>
+      </defs>
+      <rect width="200" height="12" fill="url(#batikTumpal)"></rect>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark"><img src="assets/logo-rsud-morowali.png" alt="Logo RSUD Morowali"></span>
+          <strong>RSUD Morowali</strong>
+        </div>
+        <p class="desc">Rumah Sakit Umum Daerah milik Pemerintah Kabupaten Morowali, melayani masyarakat dengan layanan kesehatan rawat jalan, rawat inap, dan gawat darurat.</p>
+      </div>
+      <div>
+        <h4>Akreditasi</h4>
+        <img src="assets/akreditasi-lam-kprs.webp" alt="" class="footer-accred-badge" loading="lazy">
+        <p class="footer-accred-text">RSUD Morowali telah Terakreditasi LAM-KPRS Bintang 5.</p>
+      </div>
+      <div>
+        <h4>Media Sosial</h4>
+        <ul>
+          <li><a class="social-link" href="https://www.instagram.com/rsud_morowali/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a></li>
+          <li><a class="social-link" href="https://www.facebook.com/RsmwOfficial/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</a></li>
+          <li><a class="social-link" href="https://www.tiktok.com/@rsmorowaliofficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 RSUD Morowali.</span>
+      <span class="footer-credit">Developed with <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by Arsalam</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1161 @@
+/* ==========================================================================
+   RSUD Morowali — shared stylesheet
+   Design tokens derived from the hospital's real logo (blue ring, green
+   cross). Blue = brand/navigation chrome, green = health/service content,
+   terracotta = reserved for urgent/emergency actions only (see :root notes).
+   ========================================================================== */
+
+:root{
+  /* Brand blue: derived from the real RSUD Morowali logo ring color (#0257F0), deepened for accessible text/surface use */
+  --color-primary: #0B4FA8;
+  --color-primary-dark: #083A7D;
+  --color-primary-light: #E8F0FC;
+  /* Health/service green: derived from the logo's cross color (#01B42B), deepened for contrast */
+  --color-secondary: #0C7A2E;
+  --color-secondary-dark: #095C22;
+  --color-secondary-light: #E7F7EC;
+  /* Warm accent reserved for urgent/emergency actions only (IGD), kept distinct from the cool brand colors */
+  --color-accent: #B9552B;
+  --color-accent-dark: #96431F;
+  --color-bg: #FAF7F1;
+  --color-surface: #FFFFFF;
+  --color-text: #17212B;
+  --color-text-muted: #4B5A68;
+  --color-border: #DCE2E8;
+
+  /* Sora: sans geometris dengan sudut sedikit membulat — modern & hangat, ganti dari Fraunces
+     yang terasa terlalu berat/institusional (lihat DESIGN.md bag. 3) */
+  --font-display: "Sora", "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 28px;
+
+  --shadow-card: 0 1px 2px rgba(23,33,43,0.06), 0 8px 20px -12px rgba(23,33,43,0.18);
+  /* Widened from 1180px: grid sections (layanan, why-us, explore) had noticeably cramped cards on laptop/desktop widths */
+  --container: 1320px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--color-text);
+  background:var(--color-bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden; /* safety net for the full-bleed hero carousel's 100vw breakout */
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3{ font-family:var(--font-display); font-weight:600; line-height:1.15; margin:0; color:var(--color-primary-dark); }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font-family:inherit; }
+/* Tanpa ini, atribut hidden (dipakai JS pagination generik untuk sembunyikan kartu di halaman
+   lain, mis. .doctor-card/.edu-card/.news-card) kalah dari class kita sendiri yang set
+   display:block eksplisit — [hidden] bawaan browser cuma aturan low-priority, jadi CSS
+   penulis (kita) menang walau elemennya ditandai hidden. !important di sini memastikan
+   hidden SELALU menang, di elemen manapun. */
+[hidden]{ display:none !important; }
+
+.container{ max-width:var(--container); margin-inline:auto; padding-inline:20px; }
+@media (min-width:640px){ .container{ padding-inline:32px; } }
+
+/* Keep anchored sections clear of the sticky header when jumped to via #id links */
+[id]{ scroll-margin-top:96px; }
+
+.skip-link{
+  position:absolute; left:12px; top:-60px; z-index:200;
+  background:var(--color-primary-dark); color:#fff; padding:10px 16px;
+  border-radius:var(--radius-sm); text-decoration:none; font-weight:600;
+  transition:top .2s ease;
+}
+.skip-link:focus{ top:12px; }
+.skip-link:focus-visible{ outline-color:#fff; }
+
+:focus-visible{ outline:3px solid var(--color-accent); outline-offset:3px; border-radius:4px; }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:0.8rem; font-weight:700; letter-spacing:0.02em;
+  color:var(--color-primary-dark); text-transform:none;
+  margin-bottom:10px;
+}
+/* Identity motif: tumpal (segitiga berjajar) dari Batik Tobungku khas Morowali, diwarnai dari
+   palet situs sendiri (bukan warna asli batik) — dipakai kecil & konsisten di tiap section-head,
+   bukan sebagai dekorasi penuh. Sumber motif: lihat DESIGN.md bag. 5. */
+.eyebrow::before{
+  content:""; width:22px; height:10px; flex:none; display:inline-block;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 10'%3E%3Cpolygon points='0,10 5.5,0 11,10' fill='%230B4FA8'/%3E%3Cpolygon points='11,10 16.5,0 22,10' fill='%230C7A2E'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-size:contain;
+}
+
+.section-head{ max-width:640px; margin-bottom:36px; }
+.section-head p{ color:var(--color-text-muted); margin-top:10px; font-size:1.02rem; }
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 24px; border-radius:999px; font-weight:700; font-size:0.98rem;
+  text-decoration:none; border:2px solid transparent; cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  min-height:48px;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn-primary{ background:var(--color-primary); color:#fff; box-shadow:0 10px 24px -10px rgba(11,79,168,0.5); }
+.btn-primary:hover{ background:var(--color-primary-dark); }
+/* Reserved for emergency/urgent actions only (e.g. IGD), so the warm accent stays a rare, meaningful signal */
+.btn-urgent{ background:var(--color-accent); color:#fff; box-shadow:0 10px 24px -10px rgba(185,85,43,0.55); }
+.btn-urgent:hover{ background:var(--color-accent-dark); }
+.btn-outline{ background:transparent; color:var(--color-primary-dark); border-color:var(--color-primary-dark); }
+.btn-outline:hover{ background:var(--color-primary-dark); color:#fff; }
+.btn-ghost-light{ background:rgba(255,255,255,0.14); color:#fff; border-color:rgba(255,255,255,0.55); }
+.btn-ghost-light:hover{ background:#fff; color:var(--color-primary-dark); }
+.btn[disabled]{ opacity:0.6; cursor:not-allowed; }
+.btn[disabled]:hover{ transform:none; }
+/* Varian lebih kecil untuk CTA sekunder — tinggi tetap 44px (minimum tap target, R-03), cuma padding & font yang dikecilkan */
+.btn-sm{ padding:9px 18px; font-size:0.86rem; min-height:44px; }
+
+/* ---------- Header / nav ---------- */
+header.site-header{
+  position:sticky; top:0; z-index:100;
+  background:var(--color-bg);
+  border-bottom:1px solid var(--color-border);
+}
+.nav-row{ display:flex; align-items:center; justify-content:space-between; padding-block:14px; gap:16px; }
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand-mark{
+  width:44px; height:44px; display:flex; align-items:center; justify-content:center; flex:none;
+}
+.brand-mark img{ width:100%; height:100%; object-fit:contain; }
+.brand-name{ font-family:var(--font-display); font-weight:700; font-size:1.12rem; color:var(--color-primary-dark); line-height:1.1; }
+.brand-name small{ display:block; font-family:var(--font-body); font-weight:600; font-size:0.68rem; color:var(--color-text-muted); letter-spacing:0.03em; }
+
+nav.main-nav{ display:none; }
+nav.main-nav ul{ display:flex; gap:26px; align-items:center; }
+nav.main-nav a:not(.btn){ text-decoration:none; font-weight:600; font-size:0.95rem; color:var(--color-text); padding:6px 2px; border-bottom:2px solid transparent; }
+nav.main-nav a:not(.btn):hover{ color:var(--color-primary-dark); border-color:var(--color-accent); }
+nav.main-nav a.active:not(.btn){ color:var(--color-primary-dark); border-color:var(--color-primary); }
+
+.nav-toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:var(--radius-sm);
+  background:var(--color-primary-light); border:1px solid var(--color-border);
+  cursor:pointer;
+}
+.nav-toggle svg{ width:22px; height:22px; color:var(--color-primary-dark); }
+
+.mobile-nav{
+  display:none; flex-direction:column; gap:4px;
+  padding:8px 20px 20px;
+  border-top:1px solid var(--color-border);
+}
+.mobile-nav.is-open{ display:flex; }
+.mobile-nav a{
+  text-decoration:none; color:var(--color-text); font-weight:600;
+  padding:12px 8px; border-radius:var(--radius-sm);
+}
+.mobile-nav a.active{ color:var(--color-primary-dark); background:var(--color-primary-light); }
+.mobile-nav a:hover, .mobile-nav a:focus-visible{ background:var(--color-primary-light); }
+
+@media (min-width:900px){
+  nav.main-nav{ display:block; }
+  .nav-toggle{ display:none; }
+}
+
+/* ---------- Hero (homepage): full-bleed carousel + welcome/motto + doctor/service search ---------- */
+.hero{ position:relative; padding-block:0 56px; }
+
+/* Full-bleed breakout: spans edge-to-edge regardless of the parent .container's max-width/padding */
+.hero-carousel{
+  position:relative; overflow:hidden;
+  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  aspect-ratio:21/8; min-height:360px; max-height:620px;
+  background:var(--color-primary-light);
+}
+/* Below 900px the search card stacks into a taller column (see .hero-search-widget), so the
+   carousel needs more height and the caption moves out of dead-center to avoid colliding with it */
+@media (max-width:899px){ .hero-carousel{ aspect-ratio:auto; min-height:460px; max-height:none; } }
+@media (max-width:640px){ .hero-carousel{ min-height:560px; } }
+/* --solo: hero tanpa kartu "Cari Dokter atau Layanan" (index.html). Tanpa kartu yang menumpuk
+   di bawah, tidak perlu tinggi tambahan itu lagi — dikembalikan ke tinggi yang cukup untuk
+   motto saja. Kartu (dan tinggi tambahan di atas) masih dipakai apa adanya di index-card.html. */
+@media (max-width:899px){ .hero-carousel--solo{ min-height:400px; } }
+
+.hero-slides{ position:relative; width:100%; height:100%; margin:0; padding:0; list-style:none; }
+.hero-slide{ position:absolute; inset:0; opacity:0; transition:opacity .7s ease; }
+.hero-slide.is-active{ opacity:1; z-index:1; }
+/* Fallback color behind the <img>, shown while it loads or if it fails */
+.hero-slide-bg{ position:absolute; inset:0; }
+.hero-slide-bg--1{ background:linear-gradient(150deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); }
+.hero-slide-bg--2{ background:linear-gradient(205deg, var(--color-primary-dark) 0%, var(--color-primary) 100%); }
+.hero-slide-bg--3{ background:linear-gradient(115deg, var(--color-primary) 0%, var(--color-primary-dark) 75%); }
+/* Stock placeholder photo: real photo for now so the layout can be judged, swap for the hospital's own later */
+.hero-slide-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+/* Left-to-right primary-color wash so left-aligned text stays legible, echoing the reference site's tint effect */
+.hero-slide-scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(8,58,125,0.82) 0%, rgba(8,58,125,0.55) 42%, rgba(8,58,125,0.12) 75%, rgba(8,58,125,0) 100%);
+}
+.hero-slide-glow{
+  position:absolute; top:-160px; left:-120px; width:520px; height:520px; border-radius:50%;
+  background:radial-gradient(circle, rgba(12,122,46,0.45) 0%, rgba(12,122,46,0.18) 45%, rgba(12,122,46,0) 72%);
+  pointer-events:none;
+}
+.hero-slide-tag{
+  position:absolute; top:12px; right:12px; left:12px; z-index:2; text-align:right;
+  background:rgba(255,255,255,0.92); color:var(--color-primary-dark);
+  font-size:0.68rem; font-weight:700; padding:5px 10px; border-radius:999px;
+  max-width:fit-content; margin-left:auto;
+}
+@media (min-width:640px){ .hero-slide-tag{ left:auto; font-size:0.74rem; } }
+
+.hero-caption{
+  position:absolute; z-index:2; top:50%; left:5%; right:5%; transform:translateY(-50%);
+  color:#fff; max-width:640px;
+}
+@media (max-width:899px){ .hero-caption{ top:26px; transform:none; } }
+/* --solo: tanpa kartu di bawah, tidak ada lagi yang perlu dihindari — motto dipusatkan
+   vertikal penuh di semua ukuran layar (override rule di atas berkat 2 class, lihat DOKUMENTASI.md) */
+.hero-carousel--solo .hero-caption{ top:50%; transform:translateY(-50%); }
+.hero-welcome{ font-size:1rem; font-weight:600; opacity:0.95; margin:0 0 10px; }
+.hero-motto{ color:#fff; font-size:clamp(1.3rem, 3.2vw, 2.1rem); line-height:1.3; margin:0; }
+
+/* Search + shortcuts card sits inside the carousel, anchored near its bottom edge */
+.hero-search-widget{
+  position:absolute; z-index:4; left:4%; right:4%; bottom:20px;
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card); padding:16px; display:flex; flex-direction:column; gap:14px;
+}
+@media (min-width:640px){ .hero-search-widget{ padding:18px 22px; } }
+@media (min-width:900px){
+  .hero-search-widget{ flex-direction:row; align-items:center; padding:20px 26px; gap:24px; }
+  /* Wider search bar; shortcuts stay compact in the remaining space */
+  .hero-search-form{ flex:0 1 74%; }
+}
+
+.hero-search-form{ flex:1; min-width:0; }
+.hero-search-label{ display:block; font-size:0.74rem; font-weight:800; letter-spacing:0.04em; color:var(--color-primary-dark); margin-bottom:8px; }
+.hero-search-input-wrap{
+  display:flex; align-items:center; gap:8px; border:1px solid var(--color-border); border-radius:8px;
+  padding:8px 8px 8px 18px; background:var(--color-surface);
+}
+.hero-search-input-wrap:focus-within{ outline:3px solid var(--color-accent); outline-offset:2px; }
+.hero-search-icon{ width:18px; height:18px; color:var(--color-text-muted); flex:none; }
+.hero-search-input-wrap input{ flex:1; min-width:0; border:none; background:transparent; font:inherit; padding:8px 4px; color:var(--color-text); }
+.hero-search-input-wrap input:focus{ outline:none; }
+.hero-search-btn{ padding:10px 22px; min-height:42px; white-space:nowrap; border-radius:8px; }
+
+.hero-search-results{ margin-top:10px; display:none; flex-direction:column; gap:6px; }
+.hero-search-results.is-visible{ display:flex; }
+.hero-search-results a{
+  display:block; padding:10px 14px; border-radius:var(--radius-sm);
+  background:var(--color-primary-light); color:var(--color-primary-dark);
+  text-decoration:none; font-size:0.9rem; font-weight:600;
+}
+.hero-search-results a:hover{ text-decoration:underline; }
+.hero-search-results .no-result{
+  padding:10px 14px; border-radius:var(--radius-sm); background:var(--color-bg);
+  color:var(--color-text-muted); font-size:0.88rem;
+}
+.hero-search-results .no-result a{ background:none; padding:0; display:inline; color:var(--color-primary); text-decoration:underline; font-weight:700; }
+.hero-search-results .no-result a + a{ margin-left:14px; }
+
+.hero-shortcuts{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+@media (min-width:900px){ .hero-shortcuts{ flex:1; } }
+.shortcut-card{
+  /* Sized like the reference site's shortcut cards: roomy padding, shadow instead of a border */
+  display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;
+  padding:14px 8px; border-radius:var(--radius-md); text-decoration:none; color:var(--color-text);
+  background:var(--color-surface); border:none; box-shadow:var(--shadow-card);
+  font-size:0.78rem; font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.shortcut-card:hover{ transform:translateY(-3px); }
+.shortcut-card .icon{
+  width:40px; height:40px; border-radius:10px; background:var(--color-secondary-light);
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.shortcut-card .icon svg{ width:19px; height:19px; color:var(--color-secondary); }
+/* IGD shortcut reuses the urgent accent, consistent with the rest of the site */
+.shortcut-card.urgent{ border-color:rgba(185,85,43,0.35); }
+.shortcut-card.urgent .icon{ background:rgba(185,85,43,0.14); }
+.shortcut-card.urgent .icon svg{ color:var(--color-accent); }
+
+/* wave divider */
+.divider{ line-height:0; }
+.divider svg{ width:100%; height:auto; display:block; }
+
+/* ---------- Page header (inner pages) ---------- */
+.page-header{
+  background:linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-bg) 100%);
+  padding-block:44px 40px;
+}
+.page-header h1{ font-size:clamp(1.7rem, 3.4vw, 2.3rem); }
+.page-header p{ margin-top:12px; color:var(--color-text-muted); max-width:62ch; font-size:1.02rem; }
+
+/* ---------- Alur Pelayanan (homepage teaser: 4 langkah nyata, bukan dipaksa 3 langkah generik) ---------- */
+.flow{ position:relative; overflow:hidden; padding-block:64px; background:var(--color-primary-light); }
+.flow .container{ position:relative; z-index:1; }
+.section-head--center{ margin-inline:auto; text-align:center; }
+
+/* Motif Batik Tobungku sebagai aksen latar, bukan dekorasi penuh — opacity rendah + mask pudar ke
+   tengah supaya tidak mengganggu keterbacaan teks (dosis sesuai R-07), disembunyikan di layar
+   sempit karena tidak ada ruang gutter untuk motif ini */
+.flow-motif{ position:absolute; top:0; bottom:0; z-index:0; width:140px; opacity:0.16; pointer-events:none; }
+.flow-motif svg{ width:100%; height:100%; display:block; }
+.flow-motif .m-a{ fill:var(--color-primary); }
+.flow-motif .m-b{ fill:var(--color-secondary); }
+.flow-motif--left{
+  left:0;
+  -webkit-mask-image:linear-gradient(to right,#000 0%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 0%,transparent 100%);
+}
+.flow-motif--right{
+  right:0;
+  -webkit-mask-image:linear-gradient(to left,#000 0%,transparent 100%);
+  mask-image:linear-gradient(to left,#000 0%,transparent 100%);
+}
+@media (max-width:1100px){ .flow-motif{ display:none; } }
+
+.flow-steps{ display:grid; gap:20px; grid-template-columns:repeat(2,1fr); }
+@media (min-width:720px){ .flow-steps{ grid-template-columns:repeat(4,1fr); } }
+.flow-step{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+  padding:24px 18px 20px;
+}
+/* Badge diperbesar supaya urutan langkah langsung kebaca sekilas, sekarang jadi satu-satunya
+   penanda visual tiap step (ikon dihapus per arahan) */
+.flow-step .step-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:48px; height:48px; border-radius:50%; background:var(--color-primary); color:#fff;
+  font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin-bottom:14px;
+}
+.flow-step h3{ font-size:0.98rem; }
+.flow-step p{ font-size:0.85rem; color:var(--color-text-muted); margin-top:6px; }
+.flow-cta{ margin-top:32px; text-align:center; }
+
+/* ---------- Mutu dan Keselamatan Pasien (informasi.html) ---------- */
+/* Pola kartu sama seperti .flow-step (Alur Pelayanan Beranda) — badge nomor besar, tanpa ikon,
+   satu-satunya penanda visual tiap kartu. Beda warna badge (secondary/hijau, bukan primary/biru)
+   supaya beda dari section Alur Pelayanan (identitas warna "layanan kesehatan" per DESIGN.md
+   4.1) — dan karena 6 Sasaran ini BUKAN urutan langkah berurutan seperti Alur Pelayanan,
+   angkanya cuma identitas resmi tiap sasaran (Sasaran 1-6), bukan mengisyaratkan "kerjakan
+   1 dulu baru 2". */
+.patient-safety{ padding-block:64px; }
+.safety-grid{ display:grid; gap:20px; grid-template-columns:repeat(2,1fr); }
+@media (min-width:640px){ .safety-grid{ grid-template-columns:repeat(3,1fr); } }
+.safety-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+  padding:24px 18px 20px;
+}
+.safety-card .safety-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:48px; height:48px; border-radius:50%; background:var(--color-secondary); color:#fff;
+  font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin-bottom:14px;
+}
+.safety-card h3{ font-size:0.94rem; }
+.safety-card p{ font-size:0.85rem; color:var(--color-text-muted); margin-top:6px; }
+
+/* ---------- Alur Pelayanan (halaman detail alur-pelayanan.html) ---------- */
+.flow-detail{ padding-block:64px; }
+/* 5 kategori alur (Pendaftaran/Rawat Jalan/IGD/Rawat Inap/SUKON), masing-masing 1 kartu —
+   diisi satu per satu sesuai data asli yang tersedia, lihat DOKUMENTASI.md */
+.flow-cards{ display:grid; gap:20px; margin-bottom:20px; }
+.flow-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:26px;
+}
+.flow-card h3{ font-size:1.05rem; margin-bottom:16px; }
+/* Nomor langkah pakai counter CSS, teknik sama persis dengan .regis-col ol di Beranda
+   (lingkaran kecil bernomor via ::before + teks dibungkus <span> supaya tidak pecah saat wrap) */
+.flow-card ol{ list-style:none; margin:0; padding:0; display:grid; gap:14px; counter-reset:flow-step; }
+.flow-card ol li{
+  display:flex; gap:12px; align-items:flex-start; font-size:0.9rem; color:var(--color-text-muted); line-height:1.55;
+}
+/* Diperbesar & diwarnai biru (--color-primary) atas permintaan — konsisten dengan badge nomor
+   di section Alur Pelayanan Beranda yang juga biru sebagai warna identitas/urutan (bag. 4.1) */
+.flow-card ol li::before{
+  counter-increment:flow-step; content:counter(flow-step);
+  flex:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--color-primary); font-family:var(--font-display); font-weight:700; font-size:1rem; color:#fff;
+}
+.flow-card ol li > span{ flex:1; min-width:0; }
+/* Varian dipakai kartu SUKON: tiap langkah punya nama tahapan sendiri (Kunjungan Poli 1/2,
+   Rawat Inap, dst), jadi ditulis sebagai judul kecil + deskripsi, bukan satu kalimat rata */
+.flow-card-ol--titled li > span > h4{ font-size:0.92rem; margin:0 0 4px; color:var(--color-primary-dark); font-family:var(--font-body); font-weight:700; }
+.flow-card-ol--titled li > span > p{ margin:0; }
+/* Kartu yang isinya dibuka dengan definisi sebelum daftar langkah (mis. SUKON) — teks utuh biasa,
+   bukan italic/muted, karena ini konten asli, bukan pengganti sementara */
+.flow-card > p{ font-size:0.95rem; line-height:1.6; margin-bottom:16px; }
+/* .form-note dipakai ulang di sini untuk catatan jam (bukan cuma di form) — margin-top default 6px
+   dirancang buat nempel ke form-row, di dalam kartu ini perlu jarak sama seperti elemen kartu lain */
+.flow-card .form-note{ margin-top:16px; }
+/* Kartu kategori yang belum ada datanya sama sekali — ditandai jujur "sedang disiapkan" (R-38), bukan
+   dikarang isinya cuma supaya kelihatan 5 kartu penuh sejak awal */
+.flow-card--pending{ padding:22px; }
+.flow-card--pending h3{ font-size:0.95rem; margin-bottom:8px; }
+.flow-card--pending p{ font-size:0.85rem; color:var(--color-text-muted); font-style:italic; }
+.flow-detail-links{ margin-top:40px; display:flex; flex-wrap:wrap; gap:14px; }
+
+/* ---------- Pendaftaran Online (Beranda): cara ambil antrean, Umum vs BPJS ---------- */
+.regis{ padding-block:64px; }
+.regis-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:26px;
+}
+/* Satu kartu, 2 kolom internal — biar link "Lihat cara lengkapnya" di bawahnya jelas berlaku untuk
+   kedua jalur pendaftaran, bukan cuma salah satu (sebelumnya 2 kartu terpisah, CTA-nya jadi
+   ambigu punya kartu yang mana di layar sempit) */
+.regis-cols{ display:grid; gap:26px; }
+@media (min-width:760px){ .regis-cols{ grid-template-columns:1fr 1fr; } }
+/* Garis pembatas antar kolom: horizontal saat ditumpuk di mobile, vertikal saat sejajar di desktop.
+   Scoped ke .regis-cols (bukan .regis-col + .regis-col generik) supaya kartu lain yang isinya
+   .regis-col tapi sengaja disusun ke bawah selalu (mis. kartu "Dokumen yang Diperlukan") tidak ikut
+   berubah jadi garis vertikal di layar lebar — lihat .regis-card > .regis-col + .regis-col di bawah */
+.regis-cols .regis-col + .regis-col{ padding-top:26px; border-top:1px solid var(--color-border); }
+@media (min-width:760px){
+  .regis-cols .regis-col + .regis-col{ padding-top:0; border-top:none; padding-left:26px; border-left:1px solid var(--color-border); }
+}
+/* Kartu yang kolomnya sengaja disusun ke bawah di semua lebar layar (bukan lewat .regis-cols) —
+   pembatasnya tetap garis horizontal, tidak berubah di desktop */
+.regis-card > .regis-col + .regis-col{ margin-top:26px; padding-top:26px; border-top:1px solid var(--color-border); }
+/* Sub-kategori di dalam satu .regis-col (mis. "Pasien Lama"/"Pasien Baru" pada kartu dokumen BPJS) —
+   label kecil + daftar dash, pola sama seperti .flow-card-ol--titled tapi tanpa nomor lingkaran
+   karena kedua kategori ini bukan urutan langkah, cuma dua kondisi alternatif */
+.doc-group + .doc-group{ margin-top:16px; }
+.doc-group h4{ font-size:0.92rem; margin:0 0 6px; color:var(--color-primary-dark); font-family:var(--font-body); font-weight:700; }
+/* Judul kategori langsung di dalam .regis-col tanpa pill .regis-type (mis. kartu "Cara Pendaftaran":
+   "Loket Pendaftaran" / "Mesin APM") — sengaja bukan pill biru/hijau karena keduanya bukan soal
+   jenis pasien Umum/BPJS, tapi 2 jalur pendaftaran yang berlaku untuk kedua jenis pasien */
+.regis-col > h4{ font-size:0.95rem; margin:0 0 14px; color:var(--color-primary-dark); font-family:var(--font-body); font-weight:700; }
+/* Isi .regis-col yang cuma 1 kalimat pendek (mis. kartu "Sumber Pembiayaan") — bukan daftar
+   langkah/dokumen, jadi teks paragraf biasa, disamakan gaya dengan .regis-col ol li */
+.regis-col > p{ margin:0; font-size:0.92rem; color:var(--color-text-muted); line-height:1.55; }
+/* Utility: bullet list pakai tanda hubung manual (reset global ul{list-style:none} di atas
+   menghapus bullet browser) — dipakai di lebih dari satu tempat sekarang, jadi diekstrak jadi
+   utility supaya tidak menduplikasi pola ::before yang sama (lihat juga .form-note ul) */
+.dash-list{ margin:0; padding:0; display:grid; gap:6px; font-size:0.92rem; color:var(--color-text-muted); line-height:1.55; }
+.dash-list li{ padding-left:14px; position:relative; }
+.dash-list li::before{ content:"\2013"; position:absolute; left:0; top:0; }
+/* Pill warna ikut sistem yang sudah ada: biru = jalur umum, hijau = terkait BPJS (sama seperti section BPJS di bawah) */
+.regis-type{
+  display:inline-flex; align-items:center; padding:6px 14px; border-radius:999px;
+  font-size:0.8rem; font-weight:700; margin-bottom:18px;
+}
+.regis-type.type-umum{ background:var(--color-primary-light); color:var(--color-primary-dark); }
+.regis-type.type-bpjs{ background:var(--color-secondary-light); color:var(--color-secondary-dark); }
+.regis-col ol{ list-style:none; margin:0; padding:0; display:grid; gap:14px; counter-reset:regis-step; }
+.regis-col ol li{
+  display:flex; gap:12px; align-items:flex-start; font-size:0.92rem; color:var(--color-text-muted); line-height:1.55;
+}
+.regis-col ol li::before{
+  counter-increment:regis-step; content:counter(regis-step);
+  flex:none; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--color-bg); border:1px solid var(--color-border); font-weight:700; font-size:0.78rem; color:var(--color-text); margin-top:1px;
+}
+/* Teks langkah (termasuk link/strong di dalamnya) dibungkus satu <span> supaya jadi satu flex-item
+   yang mengalir sebagai paragraf normal — tanpa ini, tiap teks/link jadi flex-item terpisah dan
+   pecah jadi kotak-kotak acak saat wrap (bug yang sempat kejadian) */
+.regis-col ol li > span{ flex:1; min-width:0; }
+/* Sekarang di dalam .regis-card (bukan di luar lagi) — dikasih garis pembatas supaya tetap
+   kebaca sebagai penutup/CTA kartu, bukan nyambung sebagai konten kolom */
+.regis-cta{ margin-top:28px; padding-top:24px; border-top:1px solid var(--color-border); text-align:center; }
+.regis-more{
+  display:inline-flex; align-items:center; gap:6px;
+  font-weight:700; font-size:0.9rem; color:var(--color-primary-dark); text-decoration:none;
+}
+.regis-more svg{ width:16px; height:16px; transition:transform .15s ease; }
+.regis-more:hover{ text-decoration:underline; }
+.regis-more:hover svg{ transform:translateX(3px); }
+.regis-download-links{ margin-top:20px; padding-top:18px; border-top:1px solid var(--color-border); display:flex; flex-wrap:wrap; gap:10px; }
+/* Badge unduh app store/play store: sengaja pakai gaya baku (hitam pekat, dua baris teks) yang
+   sudah dikenali luas sebagai "tombol unduh aplikasi", bukan dekorasi baru — beda dari sistem
+   tombol situs sendiri secara sadar (lihat R-31) */
+.store-badge{
+  display:inline-flex; align-items:center; gap:10px; background:#0b0b0c; color:#fff;
+  border-radius:10px; padding:8px 16px; text-decoration:none; min-height:44px;
+  transition:transform .15s ease, background-color .15s ease;
+}
+.store-badge:hover{ background:#000; transform:translateY(-2px); }
+.store-badge-icon{ width:24px; height:24px; flex:none; }
+.store-badge-text{ display:flex; flex-direction:column; line-height:1.2; font-size:1rem; font-weight:700; }
+.store-badge-text small{ font-size:0.62rem; font-weight:500; letter-spacing:0.02em; color:rgba(255,255,255,0.85); }
+
+/* ---------- Maklumat Pelayanan (Beranda): poster resmi + janji layanan ---------- */
+.maklumat{ padding-block:64px; }
+.maklumat-grid{ display:grid; gap:36px; }
+@media (min-width:900px){ .maklumat-grid{ grid-template-columns:0.9fr 1.1fr; align-items:center; } }
+.maklumat-poster img{ width:100%; border-radius:var(--radius-lg); box-shadow:var(--shadow-card); }
+/* Kutipan janji layanan ditulis ulang dari poster (kata demi kata, cuma case-nya diubah dari huruf
+   kapital semua) supaya tetap terbaca jelas & bisa diakses screen reader di layar sempit — lihat
+   catatan di komentar HTML section ini */
+.maklumat-content blockquote{
+  margin:0; font-family:var(--font-display); font-weight:600; font-size:1.1rem; line-height:1.5;
+  color:var(--color-primary-dark);
+}
+.maklumat-signature{ margin-top:20px; font-size:0.9rem; color:var(--color-text-muted); }
+.maklumat-signature strong{ display:block; color:var(--color-text); font-size:1rem; margin-top:2px; }
+.maklumat-values{ margin-top:28px; display:grid; gap:14px; grid-template-columns:repeat(2,1fr); }
+.maklumat-values li{ font-size:0.85rem; color:var(--color-text-muted); }
+.maklumat-values li strong{ display:block; color:var(--color-primary-dark); font-size:0.88rem; margin-bottom:3px; }
+
+/* ---------- FAQ (Beranda): <details>/<summary> native, accordion tanpa JS tambahan ---------- */
+.faq{ padding-block:64px; }
+.faq-list{ display:grid; gap:12px; max-width:820px; margin-inline:auto; }
+/* Varian 2 kolom (dipakai di teaser Beranda & halaman faq.html) — lebar dilepas dari 820px
+   supaya 2 kolom tidak kesempitan, align-items:start supaya tinggi kartu tidak ikut memanjang
+   menyamai kolom sebelahnya saat salah satu <details> lagi kebuka */
+.faq-list--cols{ max-width:none; align-items:start; }
+@media (min-width:760px){ .faq-list--cols{ grid-template-columns:1fr 1fr; gap:16px 28px; } }
+.faq-cta{ margin-top:28px; text-align:center; }
+.faq-item{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+  padding-inline:20px;
+}
+.faq-item summary{
+  list-style:none; cursor:pointer; position:relative;
+  padding:16px 32px 16px 0; font-weight:700; font-size:0.98rem; color:var(--color-text);
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+/* Chevron digambar dari border, bukan ikon terpisah — muter 180deg saat <details> kebuka */
+.faq-item summary::after{
+  content:""; position:absolute; right:2px; top:50%; width:10px; height:10px; margin-top:-7px;
+  border-right:2px solid var(--color-primary); border-bottom:2px solid var(--color-primary);
+  transform:rotate(45deg); transition:transform .2s ease;
+}
+.faq-item[open] summary::after{ transform:rotate(-135deg); margin-top:-3px; }
+.faq-item summary:focus-visible{ outline:3px solid var(--color-accent); outline-offset:3px; border-radius:4px; }
+.faq-answer{ padding-bottom:18px; }
+.faq-answer p{ font-size:0.92rem; color:var(--color-text-muted); line-height:1.6; }
+.faq-answer a{ color:var(--color-primary-dark); text-decoration:underline; font-weight:600; }
+
+/* ---------- Kanal Pengaduan CTA (Beranda) ---------- */
+/* Banner ringkas (bukan card grid), cuma pintu masuk cepat ke kanal-pengaduan.html — tint
+   primary-light biar beda RHYTHM dari FAQ/Mitra di sekitarnya tanpa jadi terlalu menonjol
+   (bukan konten utama Beranda). */
+.complaint-cta{ padding-block:32px; }
+.complaint-cta-card{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+  background:var(--color-primary-light); border-radius:var(--radius-lg); padding:28px 32px;
+}
+.complaint-cta-card h2{ font-size:1.15rem; }
+.complaint-cta-card p{ color:var(--color-text-muted); margin-top:4px; }
+
+/* ---------- Mitra dan Kerja Sama (Beranda): logo saja, semua mitra nyata ---------- */
+/* Tanpa kartu pembungkus (dilepas atas masukan) — logo lepas di atas latar section, dibesarkan
+   dan dilebarkan jaraknya supaya baris logo terasa memenuhi satu layar, bukan terkurung kotak kecil */
+.mitra{ padding-block:64px; }
+.mitra-logos{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:36px 56px; list-style:none; margin:0; padding:0;
+}
+.mitra-logos img{ height:56px; width:auto; max-width:190px; object-fit:contain; display:block; }
+@media (min-width:900px){ .mitra-logos img{ height:64px; max-width:210px; } }
+
+/* ---------- Ulasan Pengunjung (Beranda): STATIS & PLACEHOLDER, belum ada ulasan asli ---------- */
+.reviews{ padding-block:64px; }
+.reviews-disclaimer{
+  display:flex; gap:10px; align-items:flex-start; padding:14px 16px; border-radius:var(--radius-md);
+  background:var(--color-primary-light); color:var(--color-primary-dark); font-size:0.86rem; margin-bottom:32px;
+}
+.reviews-disclaimer svg{ width:18px; height:18px; flex:none; margin-top:1px; }
+.reviews-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+@media (min-width:760px){ .reviews-grid{ grid-template-columns:repeat(3,1fr); } }
+.review-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:24px;
+}
+.review-stars{ display:flex; gap:4px; margin-bottom:14px; }
+.review-stars svg{ width:16px; height:16px; color:var(--color-border); }
+.review-card p{ font-size:0.92rem; color:var(--color-text-muted); font-style:italic; line-height:1.6; }
+.review-who{ display:flex; align-items:center; gap:10px; margin-top:18px; }
+.review-avatar{
+  width:34px; height:34px; border-radius:50%; flex:none;
+  background:var(--color-primary-light); display:flex; align-items:center; justify-content:center;
+}
+.review-avatar svg{ width:18px; height:18px; color:var(--color-primary); }
+.review-who span:last-child{ font-size:0.88rem; font-weight:700; color:var(--color-text); }
+.reviews-cta{ margin-top:32px; text-align:center; }
+
+/* ---------- Buat Ulasan Anda (buat-ulasan.html): cari registrasi + tulis ulasan + daftar+pagination ---------- */
+.ulasan-list{ padding-block:64px; }
+/* Rating bintang: trik CSS klasik — radio ditulis terbalik (5..1) di DOM, flex-direction:row-reverse
+   membalik tampilannya jadi 1..5, jadi selector "~" bisa mengisi bintang di sebelah kiri yang dipilih */
+.rating-input{ display:inline-flex; flex-direction:row-reverse; gap:4px; }
+.rating-input input{ position:absolute; opacity:0; pointer-events:none; }
+.rating-input label{ cursor:pointer; line-height:0; }
+.rating-input label svg{ width:26px; height:26px; fill:none; stroke:var(--color-border); stroke-width:1.6; display:block; }
+.rating-input input:checked ~ label svg,
+.rating-input label:hover svg,
+.rating-input label:hover ~ label svg{ fill:var(--color-accent); stroke:var(--color-accent); }
+.rating-input input:focus-visible + label svg{ outline:3px solid var(--color-accent); outline-offset:3px; border-radius:4px; }
+
+.pagination{ display:flex; align-items:center; justify-content:center; gap:14px; margin-top:32px; flex-wrap:wrap; }
+.pagination-btn{
+  font:inherit; font-weight:700; font-size:0.88rem; color:var(--color-primary-dark);
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:999px;
+  padding:9px 18px; cursor:pointer; min-height:44px;
+}
+.pagination-btn:hover{ background:var(--color-primary-light); }
+.pagination-btn:disabled{ opacity:0.45; cursor:not-allowed; }
+.pagination-nums{ display:flex; gap:6px; }
+.pagination-num{
+  font:inherit; font-weight:700; font-size:0.88rem; color:var(--color-text);
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px;
+  width:40px; height:40px; cursor:pointer;
+}
+.pagination-num:hover{ background:var(--color-primary-light); }
+.pagination-num.is-active{ background:var(--color-primary); border-color:var(--color-primary); color:#fff; }
+
+/* ---------- Berita (Beranda): 3 kegiatan teratas, sisanya di berita.html ---------- */
+.news-teaser{ padding-block:64px; }
+.news-teaser-grid{ display:grid; gap:24px; }
+@media (min-width:720px){ .news-teaser-grid{ grid-template-columns:repeat(3,1fr); } }
+/* .news-card sekarang <a> utuh (bukan <article>) supaya seluruh kartu bisa diklik ke halaman detail berita */
+.news-card{
+  display:block; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  overflow:hidden; text-decoration:none; color:inherit;
+  transition:box-shadow .15s ease, transform .15s ease;
+}
+.news-card:hover{ box-shadow:var(--shadow-card); transform:translateY(-3px); }
+.news-card:hover .news-card-body h3{ color:var(--color-primary-dark); text-decoration:underline; }
+.news-card-img{ position:relative; aspect-ratio:4/3; background:var(--color-primary-light); }
+.news-card-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* Sama seperti badge foto stok di Hero — jujur bahwa ini foto ilustrasi, bukan dokumentasi asli kegiatan */
+.news-card-tag{
+  position:absolute; left:10px; right:10px; bottom:10px;
+  background:rgba(23,33,43,0.72); color:#fff; font-size:0.66rem; font-weight:600; line-height:1.3;
+  padding:5px 8px; border-radius:6px;
+}
+.news-card-body{ padding:18px 20px 22px; }
+.news-card-body time{ display:block; font-size:0.78rem; font-weight:700; color:var(--color-primary); }
+.news-card-body h3{ font-size:1rem; margin-top:8px; transition:color .15s ease; }
+.news-teaser-cta{ margin-top:32px; text-align:center; }
+
+/* ---------- Berita (halaman detail satu berita) ---------- */
+.article{ padding-block:56px 72px; }
+.article-container{ max-width:760px; }
+.article-hero{ position:relative; border-radius:var(--radius-lg); overflow:hidden; margin-bottom:32px; }
+.article-hero img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; }
+.article-body p{ font-size:1.02rem; line-height:1.75; color:var(--color-text); }
+.article-back{
+  display:inline-flex; align-items:center; gap:6px; margin-top:36px;
+  font-weight:700; font-size:0.9rem; color:var(--color-primary-dark); text-decoration:none;
+}
+.article-back svg{ width:16px; height:16px; transition:transform .15s ease; }
+.article-back:hover{ text-decoration:underline; }
+.article-back:hover svg{ transform:translateX(-3px); }
+
+/* ---------- About / Profil ---------- */
+/* Tanpa tint biru (permintaan langsung) — page-header di atasnya berakhir di --color-bg (krem),
+   tint biru di sini bikin transisinya kelihatan "putus" alih-alih nyambung mulus */
+.about{ padding-block:64px; }
+.about .container{ display:grid; gap:36px; }
+@media (min-width:900px){ .about .container{ grid-template-columns:0.85fr 1.15fr; align-items:start; } }
+.about-card{
+  background:var(--color-surface); border-radius:var(--radius-lg); padding:28px;
+  border:1px solid var(--color-border);
+}
+/* Foto gedung asli RSUD Morowali (dulu foto ilustrasi Unsplash + badge jujur, sudah diganti
+   foto asli sehingga badge-nya juga sudah tidak dipakai/dihapus, lihat DOKUMENTASI.md bag. 6f) */
+.about-card-photo{ position:relative; aspect-ratio:16/10; border-radius:var(--radius-md); overflow:hidden; margin-bottom:20px; }
+.about-card-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.about-card dl{ display:grid; grid-template-columns:auto 1fr; gap:10px 14px; margin-top:18px; font-size:0.9rem; }
+.about-card dt{ font-weight:700; color:var(--color-primary-dark); }
+.about-card dd{ margin:0; color:var(--color-text-muted); }
+/* Section "Visi, Misi & Nilai" dan "Jajaran Manajemen" (profil.html) pakai ulang .about
+   (sekarang sudah polos, tanpa tint, sejak .about sendiri dilepas warnanya) buat background.
+   Keduanya butuh section-head + konten bertumpuk vertikal (bukan pola "teks kiri + 1 kartu
+   kanan" milik .about biasa), jadi grid 2-kolom .about .container di-override jadi block biasa
+   — sebelumnya cuma #visi-misi yang di-override, #jajaran-manajemen kelewatan (bug: section-head/
+   avatar Direktur/grid deputi ikut kepecah jadi 2 kolom di layar &ge;900px) */
+#visi-misi .container, #jajaran-manajemen .container{ display:block; }
+/* Bento: Visi & Nilai ditumpuk di kiri, Misi (isinya paling panjang) di kanan menyamai
+   tinggi keduanya, Motto jadi penutup selebar section — supaya tidak ada kartu pendek yang
+   keliatan "mengambang" sendirian dibanding kartu Misi yang jauh lebih tinggi */
+.vmn-grid{ display:grid; gap:20px; }
+@media (min-width:900px){
+  .vmn-grid{ grid-template-columns:1fr 1fr; align-items:stretch; }
+  .vmn-misi{ grid-row:1 / 3; }
+  .vmn-motto{ grid-column:1 / -1; }
+}
+.vmn-grid .about-card h3{ font-size:1.05rem; margin-bottom:16px; }
+/* Kutipan resmi pendek (Visi, Motto) — gaya sama seperti kutipan Maklumat Pelayanan di Beranda */
+.about-quote{
+  margin:0; font-family:var(--font-display); font-weight:600; font-size:1.15rem; line-height:1.5;
+  color:var(--color-primary-dark);
+}
+.vmn-motto h3{ text-align:center; }
+.vmn-motto .about-quote{ text-align:center; font-size:1.3rem; }
+/* Misi: nomor lingkaran via counter CSS, teknik & tampilan sama persis dengan .regis-col ol
+   supaya pola "daftar bernomor" konsisten di seluruh situs */
+.vmn-misi ol{ list-style:none; margin:0; padding:0; display:grid; gap:12px; counter-reset:misi-step; }
+.vmn-misi ol li{
+  display:flex; gap:12px; align-items:flex-start; font-size:0.92rem; color:var(--color-text-muted); line-height:1.55;
+}
+.vmn-misi ol li::before{
+  counter-increment:misi-step; content:counter(misi-step);
+  flex:none; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--color-bg); border:1px solid var(--color-border); font-weight:700; font-size:0.78rem; color:var(--color-text); margin-top:1px;
+}
+.vmn-misi ol li > span{ flex:1; min-width:0; }
+.value-chip-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:0; }
+.value-chip-list li{
+  padding:6px 14px; border-radius:999px; background:var(--color-secondary-light); color:var(--color-secondary-dark);
+  font-size:0.85rem; font-weight:600;
+}
+.placeholder{
+  color:var(--color-accent-dark); font-style:normal; font-weight:600;
+}
+/* ---------- Jajaran Manajemen (profil.html) ---------- */
+/* Direktur ditaruh di tengah sendiri (avatar besar), 4 kepala bagian/bidang berbaris di bawahnya
+   dengan avatar lebih kecil — pola diadaptasi dari referensi yang diberikan user, warnanya
+   disesuaikan ke palet situs (biru/hijau), bukan warna coral aslinya */
+.mgmt-lead{ display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:40px; }
+.mgmt-lead h3{ font-size:1.15rem; margin-top:4px; }
+.mgmt-role{ margin:0; font-size:0.78rem; font-weight:700; color:var(--color-secondary-dark); text-transform:uppercase; letter-spacing:0.03em; }
+.mgmt-grid{ display:grid; gap:28px; text-align:center; }
+@media (min-width:640px){ .mgmt-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1100px){ .mgmt-grid{ grid-template-columns:repeat(4,1fr); } }
+.mgmt-person h3{ font-size:0.95rem; margin:0 0 4px; }
+/* Avatar bulat berfoto asli tiap pejabat — border tipis warna primary-light jadi ring lembut
+   mengelilingi foto, gaya sama seperti referensi visual dari user (ring pastel di sekitar foto) */
+.mgmt-avatar{
+  width:88px; height:88px; border-radius:50%; margin:0 auto 14px; overflow:hidden;
+  border:3px solid var(--color-primary-light);
+}
+.mgmt-avatar--lg{ width:140px; height:140px; border-width:4px; margin-bottom:16px; }
+.mgmt-avatar img{ width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
+
+/* ---------- Services ---------- */
+.services{ padding-block:72px; }
+.service-grid{
+  display:grid; gap:18px; grid-template-columns:repeat(2,1fr);
+}
+@media (min-width:720px){ .service-grid{ grid-template-columns:repeat(4,1fr); } }
+.service-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+  padding:22px 18px; transition:box-shadow .15s ease, transform .15s ease;
+}
+.service-card:hover{ box-shadow:var(--shadow-card); transform:translateY(-3px); }
+.service-card.featured{
+  /* IGD is the urgent one: marked with the same accent color as the emergency CTA, not the general brand blue.
+     Full-width (bukan span 2 dari 4 kolom) — kartu ini sendirian di grid-nya sendiri, span 2 di layar
+     lebar cuma mengisi setengah baris dan menyisakan ruang kosong di sebelahnya (permintaan langsung) */
+  grid-column:1/-1; background:var(--color-accent); border-color:var(--color-accent);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.service-card.featured h3, .service-card.featured p{ color:#fff; }
+.service-card.featured .icon{ background:rgba(255,255,255,0.16); }
+.service-card.featured svg{ color:#fff; }
+.service-card .icon{
+  width:44px; height:44px; border-radius:12px; background:var(--color-secondary-light);
+  display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+}
+.service-card svg{ width:22px; height:22px; color:var(--color-secondary); }
+.service-card h3{ font-size:1.02rem; }
+.service-card p{ font-size:0.85rem; color:var(--color-text-muted); margin-top:6px; }
+/* Grid poliklinik (20 item, cuma ikon+nama tanpa deskripsi karangan) — kartu dibikin baris
+   ringkas (ikon di kiri, nama di kanan) supaya tidak jadi kartu besar yang isinya kosong */
+.service-grid--poli{ gap:14px; }
+.service-grid--poli .service-card{ display:flex; align-items:center; gap:14px; padding:14px 16px; }
+.service-grid--poli .service-card .icon{ margin-bottom:0; width:38px; height:38px; flex:none; }
+.service-grid--poli .service-card svg{ width:18px; height:18px; }
+.service-grid--poli .service-card h3{ font-size:0.92rem; }
+
+/* ---------- Cari Jadwal per Hari (jadwal-dokter.html) ---------- */
+/* Tabel jadwal versi lama (grid statis 20 poliklinik) sudah dihapus dari halaman ini
+   (permintaan langsung, digantikan total oleh fitur ini) — data poliklinik/dokternya kini
+   hidup sebagai DOCTOR_SCHEDULE di assets/main.js, bukan lagi di HTML. Section ini jadi
+   satu-satunya konten halaman setelah page-header, jadi latarnya dibiarkan krem polos
+   (--color-bg dari body, sama seperti .faq/.register/.flow-detail) alih-alih putih terpisah
+   seperti sebelumnya — kartu di dalamnya (.day-btn/.day-result-item/.day-empty) yang jadi
+   putih (--color-surface) supaya tetap kebaca sebagai kartu di atas latar krem itu. */
+.day-picker{ padding-block:64px; }
+.day-strip{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; max-width:760px; margin-inline:auto; }
+.day-btn{
+  display:flex; flex-direction:column; align-items:center; gap:4px; padding:12px 4px;
+  border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface);
+  cursor:pointer; font-family:var(--font-body); color:var(--color-text);
+  transition:background .15s ease, border-color .15s ease, color .15s ease;
+}
+.day-btn-name{ font-size:0.76rem; font-weight:600; text-transform:uppercase; letter-spacing:.02em; }
+.day-btn-date{ font-family:var(--font-display); font-size:1.15rem; font-weight:700; }
+.day-btn.is-today{ border-color:var(--color-primary); }
+.day-btn.is-today .day-btn-name{ color:var(--color-primary); }
+.day-btn.is-active{ background:var(--color-primary); border-color:var(--color-primary); color:#fff; }
+.day-btn.is-active .day-btn-name{ color:#fff; }
+.day-btn:hover{ border-color:var(--color-primary); }
+.day-btn:focus-visible{ outline:2px solid var(--color-primary); outline-offset:2px; }
+@media (max-width:480px){
+  .day-strip{ gap:5px; }
+  .day-btn{ padding:8px 2px; }
+  .day-btn-name{ font-size:0.64rem; }
+  .day-btn-date{ font-size:0.96rem; }
+}
+/* Lebar dilebarkan sejajar dengan h1 page-header ("Jadwal Dokter Poliklinik") — ikut penuh
+   lebar .container (bukan dibatasi 760px seperti .day-strip/.schedule-note yang sengaja
+   dipertahankan tetap di tengah) supaya kartu 2 kolom di layar lebar tidak terasa kecil/sempit
+   (permintaan langsung). Grid 2 kolom &ge;760px, 1 kolom di mobile. */
+.day-results{ margin:28px auto 0; display:grid; grid-template-columns:1fr; gap:16px; }
+@media (min-width:760px){ .day-results{ grid-template-columns:repeat(2,1fr); } }
+.day-results-heading{ font-size:1.05rem; grid-column:1 / -1; }
+/* Satu kartu per poliklinik (bukan per dokter) — kalau poliklinik itu punya lebih dari 1 dokter
+   pada hari yang dipilih, nama-nama dokternya digabung bersusun dalam kartu yang sama
+   (.day-result-doctor-row per dokter), sama-sama sejadwal ataupun beda jam, permintaan langsung. */
+.day-result-item{
+  padding:14px 16px; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+}
+.day-result-poli{ font-weight:700; font-size:0.92rem; margin-bottom:8px; }
+.day-result-doctor-list{ display:flex; flex-direction:column; gap:6px; }
+.day-result-doctor-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.day-result-doctor-row + .day-result-doctor-row{ padding-top:6px; border-top:1px dashed var(--color-border); }
+.day-result-doctor{ color:var(--color-text-muted); font-size:0.88rem; }
+/* Tiap baris dokter di "Cari Jadwal per Hari" punya link "Lihat Profil" &rarr; profil-dokter.html
+   di bawah namanya — nama & link ditumpuk 1 kolom supaya jam di kanan tetap sejajar tengah
+   walau kolom kiri jadi 2 baris. */
+.day-result-doctor-info{ display:flex; flex-direction:column; gap:3px; }
+.day-result-profile-link{
+  display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; font-weight:700;
+  color:var(--color-primary); text-decoration:none;
+}
+.day-result-profile-link svg{ width:12px; height:12px; }
+.day-result-profile-link:hover{ text-decoration:underline; }
+.day-result-time{ flex:none; font-size:0.86rem; font-weight:600; color:var(--color-primary-dark); white-space:nowrap; }
+/* Jam dr. Matsrial (Bedah) & dr. Catherine (THT) masih "Belum tersedia" — dipakaikan warna
+   .placeholder (accent) yang sama seperti penanda data belum ada di halaman lain, supaya beda
+   dari jam asli yang berwarna biru, bukan disamarkan seolah jam sungguhan. */
+.day-result-time.placeholder{ color:var(--color-accent-dark); }
+.day-empty{
+  grid-column:1 / -1; text-align:center; padding:32px 20px; color:var(--color-text-muted); font-size:0.92rem;
+  background:var(--color-surface); border:1px dashed var(--color-border); border-radius:var(--radius-md);
+}
+/* Catatan honesty (2 dokter jadwal belum tersedia) — dipindah dari bawah tabel lama ke sini,
+   pola sama persis (ikon info + teks), cuma sekarang berdiri sendiri di bawah hasil per hari. */
+.schedule-note{
+  display:flex; gap:10px; align-items:flex-start; padding:16px 18px; margin-top:24px; max-width:760px; margin-inline:auto;
+  background:var(--color-primary-light); border:1px solid var(--color-border); border-radius:var(--radius-md);
+  font-size:0.86rem; color:var(--color-text-muted);
+}
+.schedule-note svg{ width:18px; height:18px; color:var(--color-primary); flex:none; margin-top:2px; }
+/* Varian di atas strip hari (jadwal-dokter.html) — dulu di bawah hasil, dipindah ke atas
+   (permintaan langsung) supaya pengunjung baca disclaimernya duluan sebelum lihat jadwal. */
+.schedule-note--top{ margin-top:0; margin-bottom:24px; }
+
+/* ---------- Profil Dokter (profil-dokter.html) ---------- */
+/* Halaman permanen (bukan contoh/pratinjau) — nama & poliklinik SELALU data asli, dibaca dari
+   DOCTOR_SCHEDULE (assets/main.js) lewat parameter URL ?id=. Foto & riwayat pendidikan asli
+   belum ada dari user, jadi keduanya jujur ditampilkan sebagai placeholder (ikon generik +
+   teks "[...]"), BUKAN foto orang lain/teks karangan — lihat DOKUMENTASI.md bag. 6m. */
+.doctor-profile{ padding-block:56px; }
+.doctor-profile-card{
+  display:grid; gap:28px; background:var(--color-surface); border:1px solid var(--color-border);
+  border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); padding:28px;
+}
+@media (min-width:640px){ .doctor-profile-card{ grid-template-columns:220px 1fr; align-items:start; } }
+.doctor-profile-photo{ border-radius:var(--radius-md); overflow:hidden; }
+/* Placeholder foto: ikon generik bertint (pola sama seperti .review-avatar di Ulasan
+   Pengunjung, cuma diperbesar), bukan foto sungguhan — jujur, bukan pura-pura ada foto */
+.doctor-profile-photo--placeholder{
+  aspect-ratio:4/5; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; background:var(--color-primary-light); padding:20px; text-align:center;
+}
+.doctor-profile-avatar{
+  width:88px; height:88px; border-radius:50%; background:var(--color-surface); flex:none;
+  display:flex; align-items:center; justify-content:center;
+}
+.doctor-profile-avatar svg{ width:44px; height:44px; color:var(--color-primary); }
+.doctor-profile-tag{ font-size:0.78rem; font-weight:600; color:var(--color-primary-dark); }
+.doctor-profile-poli-pill{
+  display:inline-flex; align-items:center; padding:5px 12px; border-radius:999px;
+  font-size:0.78rem; font-weight:700; background:var(--color-primary-light); color:var(--color-primary-dark);
+}
+.doctor-profile-name{ font-size:1.3rem; margin-top:12px; }
+.doctor-profile-meta{ margin-top:6px; color:var(--color-text-muted); font-size:0.94rem; }
+.doctor-profile-meta.placeholder{ color:var(--color-accent-dark); }
+.doctor-profile-edu{ margin-top:28px; }
+.doctor-profile-edu h2{ font-size:1.1rem; margin-bottom:12px; }
+
+/* ---------- Daftar Dokter (daftar-dokter.html) ---------- */
+/* Grid nama dokter rata alfabet + pagination (assets/main.js, dipakai ulang generik dari
+   edukasi.html/pengumuman.html). Kartu disiapkan berbentuk foto persegi (.doctor-card-photo,
+   pola sama seperti .edu-card-img) supaya strukturnya sudah "siap foto" — tapi isinya tetap
+   ikon generik (bukan foto wajah orang lain), karena ke-33 nama dokter di sini sungguhan.
+   Begitu foto asli tersedia, tinggal ganti isi .doctor-card-photo dari <span> ikon jadi <img>. */
+.doctor-list{ padding-block:64px; }
+.doctor-grid{ display:grid; gap:20px; grid-template-columns:repeat(2,1fr); }
+@media (min-width:640px){ .doctor-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:960px){ .doctor-grid{ grid-template-columns:repeat(4,1fr); } }
+.doctor-card{
+  display:block; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  overflow:hidden; text-decoration:none; color:inherit;
+  transition:box-shadow .15s ease, transform .15s ease;
+}
+.doctor-card:hover{ box-shadow:var(--shadow-card); transform:translateY(-3px); }
+.doctor-card:hover .doctor-card-name{ color:var(--color-primary-dark); text-decoration:underline; }
+.doctor-card-photo{
+  aspect-ratio:4/5; background:var(--color-primary-light); display:flex; align-items:center; justify-content:center;
+}
+.doctor-card-avatar svg{ width:44px; height:44px; color:var(--color-primary); }
+.doctor-card-body{ padding:14px 12px; text-align:center; }
+.doctor-card-name{ display:block; font-size:0.9rem; font-weight:700; line-height:1.3; transition:color .15s ease; }
+.doctor-card-poli{ display:block; margin-top:4px; font-size:0.76rem; color:var(--color-text-muted); }
+
+/* ---------- News / Informasi (empty state) ---------- */
+.news{ padding-block:72px; }
+/* position:relative + overflow:hidden supaya section ini bisa jadi host motif Batik Tobungku
+   (.flow-motif, dipakai ulang dari section Alur Pelayanan Beranda) — cuma di varian .on-tint
+   (Edukasi Kesehatan), bukan .news polos (Pengumuman Lainnya), sesuai dosis motif yang dijaga
+   tidak dipakai di semua section (R-07) */
+.news.on-tint{ background:var(--color-primary-light); position:relative; overflow:hidden; }
+.news.on-tint .container{ position:relative; z-index:1; }
+.news-empty{
+  background:var(--color-surface); border:1px dashed var(--color-border); border-radius:var(--radius-lg);
+  padding:48px 28px; text-align:center; max-width:520px; margin-inline:auto;
+}
+.news-empty .icon{
+  width:56px; height:56px; border-radius:16px; background:var(--color-primary-light);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+}
+.news-empty svg{ width:26px; height:26px; color:var(--color-primary); }
+.news-empty h3{ font-size:1.05rem; }
+.news-empty p{ color:var(--color-text-muted); font-size:0.92rem; margin-top:8px; }
+
+/* ---------- Pengumuman card (Informasi Publik, informasi.html) ---------- */
+/* Kartu menonjol di atas Edukasi Kesehatan/Pengumuman Lainnya, tempat pengumuman resmi RSUD
+   Morowali (mis. lowongan kerja, perubahan jadwal) ditampilkan begitu ada. Layout gambar+teks
+   sejajar mengikuti pola yang sudah ada di .maklumat-grid/.about, bukan bentuk baru.
+   padding-block bawah disamakan dengan atas (bukan 0) supaya ada jarak napas sebelum section
+   Edukasi Kesehatan yang bertint di bawahnya — sebelumnya 0, tint langsung menempel ke kartu. */
+.announcement{ padding-block:44px 40px; }
+.announcement-card{
+  display:grid; background:var(--color-surface); border:1px solid var(--color-border);
+  border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card);
+}
+@media (min-width:760px){ .announcement-card{ grid-template-columns:0.85fr 1.15fr; } }
+.announcement-img{ position:relative; aspect-ratio:16/9; }
+@media (min-width:760px){ .announcement-img{ aspect-ratio:auto; min-height:100%; } }
+.announcement-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* Duplikat kecil dari pola badge foto stok (.news-card-tag) supaya komponen ini tidak
+   bergantung ke class section lain yang beda konteks */
+.announcement-tag{
+  position:absolute; left:10px; right:10px; bottom:10px;
+  background:rgba(23,33,43,0.72); color:#fff; font-size:0.66rem; font-weight:600; line-height:1.3;
+  padding:5px 8px; border-radius:6px;
+}
+.announcement-body{ padding:28px 30px; display:flex; flex-direction:column; justify-content:center; }
+/* Pill label kategori, pola sama seperti .regis-type (Pasien Umum/BPJS) — bukan pill dekoratif,
+   fungsinya menandai jenis konten di halaman yang sekarang memuat beberapa kategori sekaligus */
+.announcement-label{
+  display:inline-flex; align-self:flex-start; align-items:center; padding:5px 12px; border-radius:999px;
+  font-size:0.78rem; font-weight:700; margin-bottom:12px; background:var(--color-primary-light); color:var(--color-primary-dark);
+}
+.announcement-body h2{ font-size:1.25rem; }
+.announcement-body p{ color:var(--color-text-muted); margin-top:10px; max-width:56ch; }
+/* Meta contoh (Posisi/Batas Pendaftaran) — dl 2 kolom, .placeholder dipakai ulang dari
+   jadwal-dokter.html (warna accent-dark, penanda "ini contoh format, bukan data asli") */
+.announcement-meta{ display:grid; gap:10px 24px; margin-top:16px; grid-template-columns:1fr; max-width:56ch; }
+@media (min-width:480px){ .announcement-meta{ grid-template-columns:1fr 1fr; } }
+.announcement-meta dt{ font-size:0.78rem; font-weight:700; color:var(--color-text-muted); }
+.announcement-meta dd{ margin:2px 0 0; font-size:0.92rem; }
+.announcement-body .form-note{ margin-top:18px; max-width:56ch; }
+
+/* ---------- Edukasi Kesehatan: kartu artikel contoh, sekarang bisa diklik ke halaman detail ---------- */
+/* Sekarang <a> utuh (dulu <div> non-klik karena belum ada halaman detail) — pola sama persis
+   dengan .news-card (Berita) sejak tiap artikel dapat halaman detail sendiri (edukasi-*.html). */
+.edu-grid{ display:grid; gap:24px; }
+@media (min-width:720px){ .edu-grid{ grid-template-columns:repeat(3,1fr); } }
+.edu-card{
+  display:block; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  overflow:hidden; text-decoration:none; color:inherit;
+  transition:box-shadow .15s ease, transform .15s ease;
+}
+.edu-card:hover{ box-shadow:var(--shadow-card); transform:translateY(-3px); }
+.edu-card:hover .edu-card-body h3{ color:var(--color-primary-dark); text-decoration:underline; }
+.edu-card-img{ position:relative; aspect-ratio:4/3; background:var(--color-primary-light); }
+.edu-card-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.edu-card-tag{
+  position:absolute; left:10px; right:10px; bottom:10px;
+  background:rgba(23,33,43,0.72); color:#fff; font-size:0.66rem; font-weight:600; line-height:1.3;
+  padding:5px 8px; border-radius:6px;
+}
+/* Tanpa <p> ringkasan (permintaan langsung) — disamakan dengan pola .news-card-body (Berita)
+   yang juga cuma judul, ringkasan ada di halaman detail */
+.edu-card-body{ padding:18px 20px 22px; }
+.edu-card-body h3{ font-size:1rem; transition:color .15s ease; }
+.edu-note{ margin-top:28px; }
+.edu-list{ padding-block:64px; }
+.edu-more{ margin-top:32px; text-align:center; }
+
+/* ---------- Pengumuman Lainnya: daftar kartu contoh (informasi.html + pengumuman.html) ---------- */
+/* Notice/pengumuman resmi bersifat teks (tanggal, jam, pemberitahuan), bukan konten bergambar
+   seperti Berita/Edukasi — sengaja tanpa foto (variasi bentuk kartu, bukan grid gambar yang
+   diulang lagi). Placeholder fakta pakai .placeholder (dipakai ulang dari jadwal-dokter.html).
+   Grid 3 kolom (bukan 1 kolom penuh selebar container) — diperbaiki karena kartu yang cuma
+   1-2 kalimat jadi kepanjangan kosong kalau melebar sampai ~1300px, sekaligus menyamakan
+   breakpoint dengan .edu-grid supaya preview 3 kartu di kedua section rapi sejajar. */
+.notice-list{ display:grid; gap:16px; }
+@media (min-width:720px){ .notice-list{ grid-template-columns:repeat(3,1fr); } }
+.notice-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:20px 22px;
+}
+.notice-card-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+.notice-card-tag{
+  display:inline-flex; align-items:center; padding:3px 10px; border-radius:999px;
+  font-size:0.72rem; font-weight:700; background:var(--color-primary-light); color:var(--color-primary-dark);
+}
+.notice-card-date{ font-size:0.8rem; color:var(--color-text-muted); font-weight:600; }
+.notice-card h3{ font-size:1rem; }
+.notice-card p{ margin-top:8px; font-size:0.9rem; color:var(--color-text-muted); line-height:1.55; }
+.notice-more{ margin-top:32px; text-align:center; }
+.notice-page{ padding-block:64px; }
+
+/* ---------- BPJS strip ---------- */
+.bpjs{ padding-block:44px; }
+.bpjs .container{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px;
+  /* Green ties this banner to the "health service" content color, distinct from the blue brand chrome */
+  background:var(--color-secondary-dark); color:#fff; border-radius:var(--radius-lg);
+  padding:28px 30px;
+}
+.bpjs-info{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+/* Logo mitra asli, di-monokrom putih (bukan warna aslinya) supaya terbaca di atas latar hijau
+   pekat dan tidak menambah warna baru ke palet section ini */
+.bpjs-logo{ height:26px; width:auto; flex:none; filter:brightness(0) invert(1); opacity:0.92; }
+.bpjs h3{ color:#fff; font-size:1.08rem; }
+.bpjs p{ color:rgba(255,255,255,0.82); font-size:0.9rem; margin-top:6px; max-width:52ch; }
+.bpjs :focus-visible{ outline-color:#fff; }
+
+/* ---------- Contact (Profil page) ---------- */
+.contact{ padding-block:72px; }
+.contact .container{ display:grid; gap:28px; }
+@media (min-width:900px){ .contact .container{ grid-template-columns:1fr 1fr; } }
+.contact-card{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:28px;
+}
+.contact-list{ display:grid; gap:18px; margin-top:20px; }
+/* Modifier dipakai di kartu "Jam Layanan" (pendaftaran-pasien.html) — .contact-list dasar (dipakai
+   profil.html) sengaja tetap 1 kolom karena di sana berbagi ruang sempit dengan peta; kartu di sini
+   full-width sendiri, jadi 2 item pendeknya dijadikan sejajar di layar lebar biar tidak boros ruang */
+@media (min-width:760px){ .contact-list--cols{ grid-template-columns:1fr 1fr; } }
+.contact-list li{ display:flex; gap:14px; align-items:flex-start; }
+.contact-list .icon{
+  width:38px; height:38px; border-radius:10px; background:var(--color-primary-light);
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.contact-list svg{ width:19px; height:19px; color:var(--color-primary); }
+.contact-list h4{ font-size:0.92rem; margin:0 0 3px; color:var(--color-primary-dark); font-family:var(--font-body); font-weight:700; }
+.contact-list p{ font-size:0.9rem; color:var(--color-text-muted); }
+/* Peta asli (bukan placeholder lagi) — titik koordinat dari link Google Maps yang dikonfirmasi user, lihat DOKUMENTASI.md bag. 6e/7 */
+.map-embed{ position:relative; aspect-ratio:16/11; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--color-border); }
+.map-embed iframe{ width:100%; height:100%; border:0; display:block; }
+.map-embed-link{
+  position:absolute; left:12px; bottom:12px; z-index:1;
+  background:var(--color-surface); color:var(--color-primary-dark); font-weight:700; font-size:0.82rem;
+  padding:8px 14px; border-radius:999px; text-decoration:none; box-shadow:var(--shadow-card);
+}
+.map-embed-link:hover{ text-decoration:underline; }
+
+/* ---------- Kanal Pengaduan (kanal-pengaduan.html) ---------- */
+/* Reuse .contact-card/.contact-list dari profil.html (Kontak & Lokasi) — polanya sama persis
+   (daftar cara menghubungi berikon), cuma isinya beda konteks (pengaduan, bukan info umum). */
+.complaint{ padding-block:72px; }
+
+/* ---------- Registration form (Pendaftaran Online) ---------- */
+.register{ padding-block:64px; }
+.register .container{ display:grid; gap:32px; }
+/* .register-form dipertahankan (masih dipakai buat-ulasan.html) meski status-card &
+   register-old-cards (2 kartu lama + wrapper-nya di pendaftaran-pasien.html) sudah dihapus
+   total, bukan cuma dipindah lagi — lihat DOKUMENTASI.md bag. 6b-detail */
+.register-form{
+  background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:28px;
+}
+.form-row{ display:grid; gap:6px; margin-bottom:18px; }
+.form-row label{ font-size:0.88rem; font-weight:700; color:var(--color-primary-dark); }
+.form-row input, .form-row select, .form-row textarea{
+  font:inherit; padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--color-border);
+  background:var(--color-bg); color:var(--color-text); min-height:44px;
+}
+.form-row textarea{ resize:vertical; }
+.form-row input:focus-visible, .form-row select:focus-visible, .form-row textarea:focus-visible{ outline:3px solid var(--color-accent); outline-offset:2px; }
+/* Baris pernyataan/checkbox (mis. Form Pengaduan) — beda layout dari .form-row biasa (field
+   berlabel di atas input), di sini checkbox & teks pernyataan sejajar di kiri-kanan */
+.form-row--checkbox{ display:flex; align-items:flex-start; gap:10px; }
+.form-row--checkbox input[type="checkbox"]{ width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--color-primary); }
+.form-row--checkbox label{ font-size:0.86rem; font-weight:400; color:var(--color-text); line-height:1.5; }
+/* Field terisi otomatis (mis. nama dari hasil pencarian) — dibuat terlihat non-editable */
+.form-row input[readonly]{ background:var(--color-border); color:var(--color-text-muted); font-style:italic; cursor:not-allowed; }
+.form-grid-2{ display:grid; gap:18px; }
+@media (min-width:640px){ .form-grid-2{ grid-template-columns:1fr 1fr; } }
+.form-note{
+  display:flex; gap:10px; align-items:flex-start; padding:14px 16px; border-radius:var(--radius-md);
+  background:var(--color-primary-light); color:var(--color-primary-dark); font-size:0.86rem; margin-top:6px;
+}
+.form-note svg{ width:18px; height:18px; flex:none; margin-top:1px; }
+/* Varian .form-note dengan judul + daftar poin (mis. "Informasi Penting untuk SUKON") — kalau isinya
+   cuma satu baris teks (pola lama), ini dibungkus <span> jadi selector di bawah tidak kena */
+.form-note > div > strong{ display:block; margin-bottom:6px; }
+/* list-style:none global (bag. reset di atas) menghapus bullet browser, jadi ditulis ulang manual
+   pakai tanda hubung via ::before — konsisten dengan pola situs lain yang tidak pakai marker default */
+.form-note ul{ margin:0; padding:0; display:grid; gap:6px; }
+.form-note ul li{ padding-left:14px; position:relative; }
+.form-note ul li::before{ content:"\2013"; position:absolute; left:0; top:0; }
+.form-feedback{
+  display:none; gap:10px; align-items:flex-start; padding:16px 18px; border-radius:var(--radius-md);
+  background:var(--color-secondary-light); color:var(--color-secondary-dark); font-size:0.92rem; margin-top:18px;
+  border:1px solid var(--color-secondary);
+}
+.form-feedback.is-visible{ display:flex; }
+.form-feedback svg{ width:20px; height:20px; flex:none; margin-top:1px; }
+
+/* ---------- Footer ---------- */
+/* Identity motif: same tumpal pattern as .eyebrow, scaled up as a thin border strip at the top
+   edge of the footer — the macro echo of the micro-mark used throughout the page (see DESIGN.md bag. 5) */
+.divider-tumpal svg{ width:100%; height:12px; display:block; }
+.divider-tumpal .t-a{ fill:var(--color-secondary); }
+.divider-tumpal .t-b{ fill:rgba(255,255,255,0.3); }
+/* Jarak ke konten footer (logo dkk.) — sebelumnya 0, motif jadi terlihat menempel ke logo
+   karena padding-top footer ada di ATAS strip, bukan di bawahnya */
+footer.site-footer .divider-tumpal{ margin-bottom:28px; }
+footer.site-footer{ background:var(--color-primary-dark); color:rgba(255,255,255,0.85); padding-block:52px 26px; }
+.footer-grid{ display:grid; gap:32px; grid-template-columns:1.3fr 1fr 1fr; }
+@media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; } }
+.footer-brand{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.footer-brand .brand-mark{ background:#fff; border-radius:10px; padding:5px; width:46px; height:46px; }
+.footer-brand strong{ color:#fff; font-family:var(--font-display); font-size:1.05rem; }
+footer.site-footer p.desc{ font-size:0.88rem; max-width:34ch; }
+footer.site-footer h4{ color:#fff; font-size:0.92rem; margin-bottom:14px; font-family:var(--font-body); font-weight:700; }
+footer.site-footer ul{ display:grid; gap:10px; }
+footer.site-footer a{ text-decoration:none; font-size:0.9rem; color:rgba(255,255,255,0.78); }
+footer.site-footer a:hover{ color:#fff; text-decoration:underline; }
+footer.site-footer a:focus-visible{ outline-color:#fff; }
+/* Lambang akreditasi asli (crop dari logo resmi RSUD Morowali, lihat DOKUMENTASI.md) —
+   ditampilkan warna aslinya (emas) karena kontras baik di atas latar biru gelap footer */
+.footer-accred-badge{ height:72px; width:auto; margin-bottom:10px; }
+.footer-accred-text{ font-size:0.86rem; color:rgba(255,255,255,0.78); max-width:26ch; }
+/* Ikon platform dari Simple Icons (CC0), sama seperti badge Google Play/App Store di
+   Pendaftaran Online — currentColor supaya ikut warna teks/hover link, bukan warna brand asli
+   platform (yang akan clash dengan latar biru gelap footer) */
+footer.site-footer .social-link{ display:inline-flex; align-items:center; gap:10px; }
+footer.site-footer .social-link svg{ width:18px; height:18px; flex:none; fill:currentColor; }
+.footer-credit{ display:inline-flex; align-items:center; gap:6px; }
+.footer-credit svg{ width:14px; height:14px; flex:none; fill:currentColor; }
+.footer-bottom{
+  margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.16);
+  font-size:0.82rem; color:rgba(255,255,255,0.65);
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between;
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+.reveal{ opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease; }
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
