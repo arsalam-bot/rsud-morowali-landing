@@ -407,12 +407,14 @@
     var today = new Date();
     var jsDay = today.getDay(); // 0 (Minggu) - 6 (Sabtu)
     var todayIndex = jsDay === 0 ? 6 : jsDay - 1; // geser ke index Senin=0 ... Minggu=6
-    var monday = new Date(today);
-    monday.setDate(today.getDate() - todayIndex);
 
-    DAY_DEFS.forEach(function(def, i){
-      var dayDate = new Date(monday);
-      dayDate.setDate(monday.getDate() + i);
+    /* Strip 7 hari mulai dari HARI INI, bukan dipatok ke Senin minggu berjalan — supaya
+       tanggal yang sudah lewat tidak ikut muncul (mis. hari ini tgl 1 → strip tampilkan
+       1,2,3,4,5,6,7, bukan mundur ke Senin kalau hari ini sudah tengah minggu). */
+    for (var i = 0; i < 7; i++) {
+      var def = DAY_DEFS[(todayIndex + i) % 7];
+      var dayDate = new Date(today);
+      dayDate.setDate(today.getDate() + i);
 
       var btn = document.createElement('button');
       btn.type = 'button';
@@ -420,7 +422,7 @@
       btn.setAttribute('data-day', def.key);
       btn.setAttribute('data-day-label', def.label);
       btn.setAttribute('aria-pressed', 'false');
-      if (i === todayIndex) { btn.classList.add('is-today'); }
+      if (i === 0) { btn.classList.add('is-today'); }
 
       var nameEl = document.createElement('span');
       nameEl.className = 'day-btn-name';
@@ -432,7 +434,7 @@
       btn.appendChild(nameEl);
       btn.appendChild(dateEl);
       dayStrip.appendChild(btn);
-    });
+    }
 
     function renderDay(dayKey, dayLabel){
       dayResults.innerHTML = '';
@@ -524,7 +526,7 @@
       if (btn) { selectDay(btn); }
     });
 
-    selectDay(dayStrip.querySelectorAll('.day-btn')[todayIndex]);
+    selectDay(dayStrip.querySelectorAll('.day-btn')[0]);
   }
 
   /* Profil Dokter (profil-dokter.html only): halaman permanen, bukan contoh/pratinjau lagi —
