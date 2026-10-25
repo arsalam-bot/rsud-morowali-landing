@@ -7,7 +7,7 @@ Proyek ini sudah jadi git repo sejak 15 September 2026 (`origin/main` di GitHub)
 
 Kalau user minta lanjut kerja tanpa konteks baru, jangan tanya ulang hal yang jawabannya sudah ada di dua file itu (mis. warna, font, section apa saja yang sudah ada) &mdash; cek dulu isinya.
 
-**Catatan git:** environment kerja agent di sini tidak punya credential GitHub tersimpan (bukan `gh` CLI, bukan SSH key, bukan `.git-credentials`) &mdash; commit boleh dibuat agent, tapi `git push` akan gagal dan perlu dijalankan user sendiri di terminalnya.
+**Catatan git:** remote `origin` pakai **SSH** (`git@github.com:arsalam-bot/rsud-morowali-landing.git`), autentikasi lewat kunci `~/.ssh/id_ed25519` yang terdaftar di akun `arsalam-bot` &mdash; `git push` bisa dijalankan agent langsung (sejak 25 Oktober 2026; sebelumnya remote pakai HTTPS dan push gagal karena GitHub tidak menerima password akun). Tidak ada `gh` CLI. Commit/push tetap hanya kalau user minta. Situs tayang via GitHub Pages di https://arsalam-bot.github.io/rsud-morowali-landing/ (update butuh sekitar 1&ndash;2 menit setelah push).
 
 <!-- antislop:start -->
 ## antislop
