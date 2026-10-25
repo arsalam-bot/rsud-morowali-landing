@@ -208,7 +208,12 @@ nav.main-nav a.active:not(.btn){ color:var(--color-primary-dark); border-color:v
 /* Left-to-right primary-color wash so left-aligned text stays legible, echoing the reference site's tint effect */
 .hero-slide-scrim{
   position:absolute; inset:0;
-  background:linear-gradient(to right, rgba(8,58,125,0.82) 0%, rgba(8,58,125,0.55) 42%, rgba(8,58,125,0.12) 75%, rgba(8,58,125,0) 100%);
+  background:linear-gradient(to right, rgba(8,58,125,0.86) 0%, rgba(8,58,125,0.74) 40%, rgba(8,58,125,0.2) 72%, rgba(8,58,125,0) 100%);
+}
+/* Di layar sempit teks hero (termasuk lockup SIMPATI yang kecil) memanjang hampir selebar layar,
+   jadi wash di sisi kanan harus tetap cukup pekat supaya teks kecil lolos kontras 4.5:1 */
+@media (max-width:640px){
+  .hero-slide-scrim{ background:linear-gradient(to right, rgba(8,58,125,0.86) 0%, rgba(8,58,125,0.8) 60%, rgba(8,58,125,0.72) 100%); }
 }
 .hero-slide-glow{
   position:absolute; top:-160px; left:-120px; width:520px; height:520px; border-radius:50%;
@@ -233,6 +238,45 @@ nav.main-nav a.active:not(.btn){ color:var(--color-primary-dark); border-color:v
 .hero-carousel--solo .hero-caption{ top:50%; transform:translateY(-50%); }
 .hero-welcome{ font-size:1rem; font-weight:600; opacity:0.95; margin:0 0 10px; }
 .hero-motto{ color:#fff; font-size:clamp(1.3rem, 3.2vw, 2.1rem); line-height:1.3; margin:0; }
+/* Lockup logo SIMPATI di atas sapaan. Kotak putih: bagian biru logo hilang kalau langsung di atas scrim biru. */
+.hero-simpati{ display:flex; align-items:center; gap:14px; margin-bottom:22px; }
+.hero-simpati-mark{
+  width:64px; height:64px; flex:none; display:flex; align-items:center; justify-content:center;
+  background:var(--color-surface); border-radius:var(--radius-md); padding:8px;
+}
+.hero-simpati-mark img{ width:100%; height:100%; object-fit:contain; }
+.hero-simpati-text{ display:flex; flex-direction:column; line-height:1.3; min-width:0; }
+.hero-simpati-text strong{ font-family:var(--font-display); font-weight:700; font-size:1.25rem; letter-spacing:0.02em; }
+.hero-simpati-text span{ font-size:0.82rem; opacity:0.95; }
+/* min-height 44px = tap target (R-03); margin negatif supaya area ketuk yang lebih tinggi tidak mendorong tata letak */
+.hero-simpati-text a{ color:#fff; font-size:0.82rem; font-weight:700; width:fit-content; display:inline-flex; align-items:center; min-height:44px; margin-block:-11px -13px; }
+@media (min-width:900px){
+  .hero-simpati-mark{ width:80px; height:80px; padding:10px; }
+  .hero-simpati-text strong{ font-size:1.45rem; }
+  .hero-simpati-text span, .hero-simpati-text a{ font-size:0.9rem; }
+}
+
+/* ---------- Tentang SIMPATI (Beranda): penjelasan resmi nama/logo sistem ---------- */
+.simpati{ padding-block:8px 64px; scroll-margin-top:80px; }
+.simpati-grid{ display:grid; gap:32px; }
+.simpati-identity{ text-align:center; }
+.simpati-identity img{ width:160px; height:auto; margin-inline:auto; display:block; }
+.simpati-identity h2{ margin-top:18px; font-size:clamp(1.8rem, 4vw, 2.4rem); letter-spacing:0.02em; }
+.simpati-identity p{ margin:6px auto 0; max-width:260px; color:var(--color-text-muted); font-weight:600; font-size:0.95rem; }
+@media (min-width:900px){
+  .simpati-grid{ grid-template-columns:300px 1fr; gap:64px; align-items:start; }
+  .simpati-identity{ position:sticky; top:110px; }
+  .simpati-identity img{ width:200px; }
+}
+.simpati-body{ max-width:760px; display:grid; gap:36px; }
+.simpati-body h3{ font-size:1.2rem; margin-bottom:10px; }
+.simpati-body p{ margin:0; color:var(--color-text-muted); line-height:1.7; }
+.simpati-body p + p{ margin-top:12px; }
+.simpati-body .simpati-lead{ font-family:var(--font-display); font-size:1.08rem; line-height:1.65; color:var(--color-primary-dark); }
+.simpati-traits{ list-style:none; margin:20px 0 0; padding:0; display:grid; gap:18px 28px; }
+@media (min-width:640px){ .simpati-traits{ grid-template-columns:repeat(2,1fr); } }
+.simpati-traits li{ padding-top:14px; border-top:2px solid var(--color-secondary); font-size:0.92rem; color:var(--color-text-muted); line-height:1.6; }
+.simpati-traits li strong{ display:block; color:var(--color-primary-dark); font-size:0.98rem; margin-bottom:4px; }
 
 /* Search + shortcuts card sits inside the carousel, anchored near its bottom edge */
 .hero-search-widget{

@@ -21,6 +21,8 @@ RSUD Morowali ingin terasa **tidak terlalu formal-pemerintah**. Arahnya: **moder
 | `--color-accent` | `#B9552B` | Khusus darurat/urgent (IGD) — dipakai jarang, supaya tetap terasa penting |
 | `--color-bg` | `#FAF7F1` | Krem hangat, penyeimbang biru/hijau yang dingin |
 
+**Logo SIMPATI** (nama sistem informasi website ini, ditambahkan 25 Oktober 2026, lihat `DOKUMENTASI.md` bag. 6s) punya warna sendiri (biru, emas, merah). Warna itu **tidak** diambil ke palet situs. Logonya tampil apa adanya sebagai gambar, di atas kotak putih di hero dan di atas latar krem di section "Tentang SIMPATI".
+
 **Alasan (R-31):** biru & hijau = identitas logo asli (bukan pilihan generik), terracotta dijaga langka supaya darurat tetap menonjol, krem hangat menjawab arahan poin 1 (tidak mau terlalu dingin/formal). Maks 3 warna inti + netral, sesuai R-29.
 
 ## 3. Tipografi
