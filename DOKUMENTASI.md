@@ -21,8 +21,8 @@ Progres tercatat sampai: **Hero Section + Alur Pelayanan + Pendaftaran Pasien + 
 **Title bar (bag. 6r) dirapikan di ke-29 halaman**: Beranda jadi cuma "RSUD Morowali", halaman lain "Nama Halaman - RSUD Morowali" (tanda hubung biasa, bukan em dash lagi).
 **Bug ditemukan &amp; diperbaiki (bag. 6q): grid Poliklinik/Ruang Rawat Inap di `layanan.html` overflow ke kanan di layar mobile asli** (2 kolom `1fr` tidak menyusut merata gara-gara nama poliklinik panjang, plus kata tanpa spasi seperti "Umum/Konsultasi" kepotong di tengah kata) &mdash; diperbaiki (`min-width:0` di kartu, `overflow-wrap:anywhere` di judul, grid Poliklinik/Rawat Inap jadi 1 kolom penuh di &lt;521px). Dicek langsung pakai Playwright headless yang sudah terpasang di environment ini (bag. 6p), bukan cuma baca kode.
 **Hero Beranda (bag. 6p) &mdash; direvisi: kartu "Cari Dokter atau Layanan" dihapus dari `index.html`.** Atas permintaan langsung, dibandingkan dulu lewat pratinjau Artifact (2 versi disandingkan, style/foto disalin persis dari `assets/styles.css`) sebelum diterapkan. Versi lama (dengan form pencarian + 2 shortcut "Buat Janji"/"Layanan Unggulan") **dipertahankan utuh di file baru `index-card.html`** (duplikat persis `index.html` sebelum revisi, permintaan langsung, bukan otomatis dari agent) &mdash; tidak masuk nav, murni referensi/pembanding. Shortcut "Buat Janji"/"Layanan Unggulan" **sengaja tidak dipindah ke tempat lain** di hero baru (dikonfirmasi ke user): sudah terwakili lewat nav "Pendaftaran" &amp; section Alur Pelayanan tepat di bawah hero, jadi hero baru dibiarkan bersih tanpa tombol pengganti.
-**Logo SIMPATI di hero + section baru "Tentang SIMPATI" (bag. 6s)**, permintaan atasan user: lockup logo di atas sapaan hero, penjelasan lengkap dari dokumen resmi di section tepat di bawah hero; scrim hero dipekatkan supaya semua teks hero lolos kontras AA.
-Terakhir diperbarui: 25 Oktober 2026.
+**SIMPATI dipasang sebagai sub-brand (bag. 6s)**, permintaan atasan user: strip ringkas tepat setelah hero di Beranda, penjelasan lengkap di `profil.html#simpati`, baris SIMPATI di footer semua halaman (versi pertama di dalam hero sudah diganti, dinilai bersaing dengan identitas RSUD Morowali). Scrim hero dipekatkan supaya semua teks hero lolos kontras AA.
+Terakhir diperbarui: 30 Oktober 2026.
 Arah desain (palet, tipografi, dial, motif lokal): lihat `DESIGN.md`.
 
 ---
@@ -330,25 +330,31 @@ Permintaan langsung: title bar Beranda cuma **"RSUD Morowali"** (tanpa tagline),
 
 ---
 
-## 6s. Logo &amp; section "Tentang SIMPATI" (Beranda) &mdash; SELESAI
+## 6s. SIMPATI (sub-brand): strip Beranda + section Profil + footer semua halaman &mdash; SELESAI
 
-Permintaan langsung (25 Oktober 2026, diminta atasan user): tampilkan logo **SIMPATI** (*Sistem Informasi Manajemen Pelayanan Terintegrasi*, nama sistem informasi/website ini) di hero, plus penjelasannya dari dokumen resmi `Penjelasan SIMPATI RSUD Morowali.docx` (folder lokal `rsudmorowalifoto`).
+Permintaan langsung (25 Oktober 2026, diminta atasan user): tampilkan logo **SIMPATI** (*Sistem Informasi Manajemen Pelayanan Terintegrasi*, nama sistem informasi/website ini) plus penjelasannya dari dokumen resmi `Penjelasan SIMPATI RSUD Morowali.docx` (folder lokal `rsudmorowalifoto`).
 
-**Keputusan (dipilih user lewat pertanyaan, bukan tebakan agent):**
-- **Logo versi docx (simbol saja, tanpa tulisan)** dipakai, bukan versi gambar WhatsApp (simbol + tulisan "SIMPATI" + kepanjangan). Nama &amp; kepanjangan ditulis sebagai teks HTML di sebelahnya (terbaca screen reader, tajam di semua ukuran).
-- **Penjelasan lengkap di section baru tepat di bawah hero**, bukan di dalam hero (teksnya 4 paragraf + 4 poin, tidak muat di hero). Akibatnya Alur Pelayanan turun satu posisi (sebelumnya section pertama setelah hero, lihat bag. 6a) &mdash; disetujui user.
+### Posisi akhir (Opsi 5, dipilih user 30 Oktober 2026)
 
-**Aset:** `assets/simpati-logo.webp` (382&times;440, latar transparan). Latar putih gambar dari docx dihapus lewat flood-fill dari tepi gambar (hanya latar luar; putih di palang &amp; titik sirkuit dipertahankan), lalu di-crop rapat. Catatan: 2 versi logo yang diterima (docx vs WhatsApp) warnanya sedikit beda (versi docx lebih banyak emas) &mdash; kalau ada file logo resmi (vektor/PNG beresolusi tinggi), sebaiknya diganti dengan itu.
+SIMPATI diperlakukan sebagai **sub-brand**: RSUD Morowali tetap identitas utama (header &amp; hero tidak memuat SIMPATI sama sekali), SIMPATI disebut sebagai sistem informasi yang menjalankan website ini.
+- **Beranda, strip ringkas tepat setelah hero** (`.simpati-strip`): logo kecil + "SIMPATI" + kepanjangan + 1 kalimat asli dokumen + tombol "Tentang SIMPATI" (`.btn-outline.btn-sm`, pola CTA penutup, `DESIGN.md` bag. 7) &rarr; `profil.html#simpati`. Urutan Beranda sekarang: Hero &rarr; strip SIMPATI &rarr; Alur Pelayanan (bag. 6a) &rarr; dst.
+- **`profil.html`, section `#simpati`** (sebelum Kontak): penjelasan lengkap &mdash; kiri logo besar + nama (sticky di &ge;900px), kanan paragraf pembuka, "Makna nama SIMPATI" + 4 sikap, "Fungsi website ini".
+- **Footer semua halaman** (`.footer-simpati`, 30 halaman; `index-card.html` sengaja tidak, salinan beku bag. 6p): logo kecil di kotak putih + "Website ini bagian dari SIMPATI, Sistem Informasi Manajemen Pelayanan Terintegrasi RSUD Morowali." + tautan "Tentang SIMPATI". Kalimat footer ini **susunan agent**, bukan dari dokumen &mdash; ganti kalau ada redaksi resmi.
 
-**Hero (`.hero-simpati`):** lockup di atas sapaan "Selamat datang": kotak putih (radius `--radius-md`) berisi simbol logo, lalu teks "SIMPATI" (Sora) + kepanjangan + tautan **"Tentang SIMPATI"** (`#tentang-simpati`, area ketuk 44px). Kotak putih dipakai karena bagian biru logo tenggelam kalau langsung ditaruh di atas scrim biru hero.
+### Teks &amp; aset
 
-**Scrim hero dipekatkan** (dampak ke seluruh hero, bukan cuma lockup): diukur dari piksel asli di ketiga slide, teks kepanjangan di desktop cuma 3.7&ndash;3.9:1 dan tautan di mobile sekitar 3.4:1 (gagal AA 4.5:1). Gradasi desktop diubah (0.82/0.55/0.12 &rarr; 0.86/0.74/0.20), plus gradasi khusus &le;640px yang tetap pekat sampai sisi kanan (0.86/0.80/0.72) karena di layar sempit teks memanjang hampir selebar layar. Hasil: semua teks hero minimal 5.3:1 di ketiga slide (desktop 1440px, mobile 375px &amp; 320px).
+- **Teks dari dokumen apa adanya**, cuma salah ketik yang dibetulkan: "pelayana"&rarr;"pelayanan", "Ha lini"&rarr;"Hal ini", "mberikan"/"meberikan"&rarr;"memberikan", spasi ganda. 2 subjudul di Profil ("Makna nama SIMPATI", "Fungsi website ini") ditambahkan agent sebagai label struktur &mdash; boleh diganti kalau ada judul resmi.
+- **Logo versi docx (simbol saja)** dipilih user, bukan versi WhatsApp (simbol + tulisan). Nama ditulis sebagai teks HTML. `assets/simpati-logo.webp` (382&times;440, latar transparan, latar putih luar dihapus via flood-fill dari tepi). 2 versi logo yang diterima warnanya sedikit beda (docx lebih banyak emas) &mdash; kalau ada file logo resmi beresolusi tinggi, sebaiknya diganti.
+- Warna merah/emas logo SIMPATI **tidak** masuk palet situs (`DESIGN.md` bag. 2).
 
-**Section `.simpati` (`#tentang-simpati`):** 2 kolom di &ge;900px &mdash; kiri logo besar + "SIMPATI" + kepanjangan (ikut menempel/sticky saat scroll, supaya kolom kiri tidak kosong di samping teks panjang), kanan: paragraf pembuka (font display, warna primary sebagai lead), "Makna nama SIMPATI" + 4 sikap (grid 2 kolom, garis atas hijau `--color-secondary`), "Fungsi website ini" (2 paragraf). Di mobile menumpuk 1 kolom, logo di tengah.
-- **Teks dari dokumen apa adanya**, cuma salah ketik yang dibetulkan: "pelayana"&rarr;"pelayanan", "Ha lini"&rarr;"Hal ini", "mberikan"/"meberikan"&rarr;"memberikan", spasi ganda. 2 subjudul ("Makna nama SIMPATI", "Fungsi website ini") ditambahkan agent sebagai label struktur, bukan dari dokumen &mdash; boleh diganti kalau ada judul resmi.
-- Logo &amp; warna merah/emas SIMPATI **tidak** dimasukkan ke palet situs (tetap biru/hijau/terracotta, lihat `DESIGN.md` bag. 2).
+### Riwayat
 
-**Verifikasi (Playwright, R-35):** tidak ada overflow horizontal (1440/375px), tautan "Tentang SIMPATI" &rarr; scroll ke `#tentang-simpati` (berhenti 80px di bawah header sticky), bisa dicapai lewat Tab dengan focus ring terracotta, tidak ada error console.
+1. **25 Oktober 2026, versi pertama (sudah diganti):** lockup logo SIMPATI di kotak putih di dalam hero (di atas sapaan) + section penjelasan lengkap tepat di bawah hero. **Dinilai user jelek**: hero jadi punya 2 fokus (logo SIMPATI merah/emas bersaing dengan identitas RSUD Morowali), dan 4 paragraf esai mendorong Alur Pelayanan ke bawah.
+2. **30 Oktober 2026, pratinjau 5 opsi** (halaman sementara `simpati-opsi-1..5.html` + `profil-simpati.html`, sudah dihapus): (1) strip setelah Pendaftaran Pasien + footer, (2) footer saja, (3) co-brand logo di header, (4) strip setelah hero + header + footer, (5) strip setelah hero + footer. Catatan agent waktu itu: opsi 4 menampilkan SIMPATI 2&times; di layar pertama. **User memilih opsi 5.** CSS co-brand header &amp; lockup hero dihapus karena tidak terpakai.
+
+**Scrim hero tetap dipekatkan** (perubahan dari versi pertama, dipertahankan): pengukuran per piksel waktu itu menemukan sapaan "Selamat datang" yang sudah ada sejak awal cuma 2.5&ndash;3.3:1. Gradasi desktop 0.82/0.55/0.12 &rarr; 0.86/0.74/0.20, plus gradasi khusus &le;640px (0.86/0.80/0.72). Semua teks hero kini minimal 5.3:1 di ketiga slide.
+
+**Verifikasi (Playwright, R-35):** 30 halaman &times; 1440/1024/375/320px, tidak ada error console, tiap halaman punya tepat 1 tautan footer ke `profil.html#simpati`; kontras teks strip &amp; footer 7.09&ndash;10.99:1; tombol strip 44px, bisa dicapai lewat Tab (focus ring tampil), klik &rarr; `profil.html#simpati` berhenti 80px di bawah header. **Temuan lama, bukan dari perubahan ini:** `informasi.html` overflow 4px di lebar 320px (kartu `.safety-card`, section Mutu dan Keselamatan Pasien) &mdash; sudah ada di commit sebelumnya, belum diperbaiki.
 
 ---
 
@@ -1100,7 +1106,7 @@ Ditandai `[...]` di halaman terkait, **jangan dianggap data final**:
 | Halaman | Status |
 |---|---|
 | Beranda &mdash; Hero Section | **Selesai** (per permintaan terakhir) |
-| Beranda &mdash; Tentang SIMPATI | **Selesai**, logo di hero + section penjelasan dari dokumen resmi &mdash; lihat bag. 6s |
+| Beranda &mdash; SIMPATI | **Selesai**, strip ringkas tepat setelah hero (penjelasan lengkap di Profil, baris di footer semua halaman) &mdash; lihat bag. 6s |
 | Beranda &mdash; Alur Pelayanan | **Selesai** (per permintaan terakhir) |
 | Beranda &mdash; Pendaftaran Pasien | **Selesai**, isi berdasarkan data asli dari user |
 | Beranda &mdash; Maklumat Pelayanan | **Selesai**, poster resmi asli dari user |
@@ -1110,7 +1116,7 @@ Ditandai `[...]` di halaman terkait, **jangan dianggap data final**:
 | Beranda &mdash; Ulasan Pengunjung | Draf/placeholder statis, disepakati sementara menunggu ulasan asli |
 | Beranda &mdash; Berita | **Selesai**, 3 kegiatan asli dari user, menggantikan "Kenapa Memilih Kami" &amp; "Jelajahi" (dihapus) |
 | Beranda &mdash; BPJS | **Selesai**, isi disamakan dengan data asli Pendaftaran Pasien &amp; FAQ &mdash; lihat bag. 6j |
-| Profil | **Selesai** &mdash; sejarah singkat, visi/misi/nilai/motto (dari dokumen resmi), jajaran manajemen (foto asli 5 pejabat), akreditasi, tipe RS, alamat, email, jam layanan, jam besuk, peta, semua data resmi. Telepon/IGD sengaja tidak ditampilkan (dihapus, bukan placeholder). Lihat bag. 6f. |
+| Profil | **Selesai** &mdash; sejarah singkat, visi/misi/nilai/motto (dari dokumen resmi), jajaran manajemen (foto asli 5 pejabat), penjelasan SIMPATI (`#simpati`, bag. 6s), akreditasi, tipe RS, alamat, email, jam layanan, jam besuk, peta, semua data resmi. Telepon/IGD sengaja tidak ditampilkan (dihapus, bukan placeholder). Lihat bag. 6f. |
 | Layanan | **Selesai** &mdash; IGD, Poliklinik (20 item), Ruang Rawat Inap (16 item), &amp; Layanan Penunjang (12 item) semuanya data resmi; page-header &amp; kartu BPJS sudah disamakan dengan Beranda; section Fasilitas lama dihapus. Lihat bag. 6f. |
 | Informasi (`informasi.html`, terpisah dari Berita &mdash; lihat bag. 6d) | **Mutu dan Keselamatan Pasien selesai** (6 Sasaran Keselamatan Pasien, data resmi bersumber Permenkes 11/2017); Card Pengumuman masih **contoh** ("Open Recruitment"); Edukasi Kesehatan &amp; Pengumuman Lainnya masing-masing 3 kartu **contoh format**, dengan link ke daftar lengkap |
 | Edukasi Kesehatan (daftar lengkap, `edukasi.html`) | 12 kartu **contoh format** (6/halaman) + pagination berfungsi (2 halaman), semua kartu bisa diklik ke halaman detail |
