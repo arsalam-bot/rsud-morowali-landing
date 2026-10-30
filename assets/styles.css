@@ -403,9 +403,12 @@ footer.site-footer .footer-simpati a{ color:#fff; text-decoration:underline; fon
 .patient-safety{ padding-block:64px; }
 .safety-grid{ display:grid; gap:20px; grid-template-columns:repeat(2,1fr); }
 @media (min-width:640px){ .safety-grid{ grid-template-columns:repeat(3,1fr); } }
+/* <360px: kolom 2x ~130px terlalu sempit untuk kata seperti "Mengidentifikasi", 1 kolom supaya tidak keluar kartu */
+@media (max-width:359px){ .safety-grid{ grid-template-columns:1fr; } }
 .safety-card{
   background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
   padding:24px 18px 20px;
+  min-width:0; /* track 1fr bisa menyusut rata di layar 320px, sama seperti .service-card (DOKUMENTASI.md bag. 6q) */
 }
 .safety-card .safety-num{
   display:inline-flex; align-items:center; justify-content:center;
