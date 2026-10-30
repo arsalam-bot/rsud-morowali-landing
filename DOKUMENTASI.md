@@ -339,7 +339,7 @@ Permintaan langsung (25 Oktober 2026, diminta atasan user): tampilkan logo **SIM
 SIMPATI diperlakukan sebagai **sub-brand**: RSUD Morowali tetap identitas utama (header &amp; hero tidak memuat SIMPATI sama sekali), SIMPATI disebut sebagai sistem informasi yang menjalankan website ini.
 - **Beranda, strip ringkas tepat setelah hero** (`.simpati-strip`): logo kecil + "SIMPATI" + kepanjangan + 1 kalimat asli dokumen + tombol "Tentang SIMPATI" (`.btn-outline.btn-sm`, pola CTA penutup, `DESIGN.md` bag. 7) &rarr; `profil.html#simpati`. Urutan Beranda sekarang: Hero &rarr; strip SIMPATI &rarr; Alur Pelayanan (bag. 6a) &rarr; dst.
 - **`profil.html`, section `#simpati`** (sebelum Kontak): penjelasan lengkap &mdash; kiri logo besar + nama (sticky di &ge;900px), kanan paragraf pembuka, "Makna nama SIMPATI" + 4 sikap, "Fungsi website ini".
-- **Footer semua halaman** (`.footer-simpati`, 30 halaman; `index-card.html` sengaja tidak, salinan beku bag. 6p): logo kecil di kotak putih + "Website ini bagian dari SIMPATI, Sistem Informasi Manajemen Pelayanan Terintegrasi RSUD Morowali." + tautan "Tentang SIMPATI". Kalimat footer ini **susunan agent**, bukan dari dokumen &mdash; ganti kalau ada redaksi resmi.
+- **Footer semua halaman** (`.footer-simpati`, 30 halaman; `index-card.html` sengaja tidak, salinan beku bag. 6p): logo kecil di kotak putih + "Website ini bagian dari SIMPATI, Sistem Informasi Manajemen Pelayanan Terintegrasi RSUD Morowali." + tautan "Tentang SIMPATI". Kalimat footer ini susunan agent (bukan dari dokumen), **sudah disetujui user 30 Oktober 2026** sebagai redaksi final.
 
 ### Teks &amp; aset
 
